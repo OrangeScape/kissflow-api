@@ -2,6 +2,7 @@
   "paths": {
       "/user/2/{account_id}/api/verify": {
           "get": {
+            "summary": "Represents a user",
             "tags": [
               "User"
             ],
