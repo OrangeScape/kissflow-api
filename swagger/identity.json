@@ -1,0 +1,152 @@
+{
+  "paths": {
+      "/user/2/{account_id}/api/verify": {
+          "get": {
+            "tags": [
+              "User"
+            ],
+            "description": "Get current user details",
+            "parameters": [
+              {
+                "name": "account_id",
+                "in": "path",
+                "description": "ID of account",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "user returned",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/DefaultStatus"
+                    }
+                  }
+                }
+              },
+              "202": {
+                "description": "User Not Founded",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/DefaultErrorSchema"
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+              {
+                "X-Api-Key": []
+              },
+              {
+                "X-Access-Key-Id": []
+              },
+              {
+                "X-Access-Key-Secret": []
+              }
+            ]
+          }
+        }
+  },
+  "tags": [
+      {
+          "name": "User",
+          "description": "Create and manage users in Kissflow using these API endpoints.",
+          "externalDocs": {
+            "description": "Find out more",
+            "url": "https://kissflow.com"
+          }
+      }
+  ],
+  "components": {
+      "schemas": {
+        "DefaultStatus": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "status"
+          ]
+        },
+        "DefaultErrorSchema": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string"
+            },
+            "args": {
+              "type": "object"
+            },
+            "error_code": {
+              "type": "string"
+            },
+            "en_message": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "_id",
+            "error_code"
+          ]
+        }
+      },
+      "securitySchemes": {
+          "X-Api-Key": {
+            "type": "apiKey",
+            "name": "X-Api-Key",
+            "in": "header"
+          },
+          "X-Access-Key-Id": {
+            "type": "apiKey",
+            "name": "X-Access-Key-Id",
+            "in": "header"
+          },
+          "X-Access-Key-Secret": {
+            "type": "apiKey",
+            "name": "X-Access-Key-Secret",
+            "in": "header"
+          }
+        }
+  },
+  "servers": [
+    {
+      "url": "https://{domain}.kissflow.{region}",
+      "variables": {
+          "domain": {
+              "default": "demo",
+              "description": "Sub-domain to your account"
+          },
+          "region": {
+              "enum": [
+                "com",
+                "eu"
+              ],
+              "default": "com",
+              "description": "Region to your account"
+          }
+      }
+    }
+  ],
+  "info": {
+    "title": "Identity Management",
+    "version": "4.0.0",
+    "contact": {
+      "email": "admin@kissflow.com"
+    }
+  },
+  "openapi": "3.0.0"
+}
