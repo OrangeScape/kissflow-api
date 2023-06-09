@@ -1,0 +1,132 @@
+{
+  "paths": {
+    
+  },
+  "tags": [
+      {
+        "name": "Dataset",
+        "description": "Retrieve your dataset's values or update multiple fields in your dataset using this API endpoint.",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "https://kissflow.com"
+        }
+      }
+  ],
+  "components": {
+    "responses": {
+      "NotAuthorized": {
+        "description": "The client request has not been completed because it lacks valid authentication credentials for the requested resource.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DefaultErrorSchema"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "Resource Requested is not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DefaultErrorSchema"
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "The server understands the request but refuses to authorize it.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DefaultErrorSchema"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "DefaultStatus": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "DefaultErrorSchema": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "args": {
+            "type": "object"
+          },
+          "error_code": {
+            "type": "string"
+          },
+          "en_message": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id",
+          "error_code"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "X-Api-Key": {
+          "type": "apiKey",
+          "name": "X-Api-Key",
+          "in": "header"
+      },
+      "X-Access-Key-Id": {
+          "type": "apiKey",
+          "name": "X-Access-Key-Id",
+          "in": "header"
+      },
+      "X-Access-Key-Secret": {
+          "type": "apiKey",
+          "name": "X-Access-Key-Secret",
+          "in": "header"
+      }
+  }},
+  "servers": [
+    {
+      "url": "https://{domain}.kissflow.{region}",
+      "variables": {
+          "domain": {
+              "default": "demo",
+              "description": "Sub-domain to your account"
+          },
+          "region": {
+              "enum": [
+                "com",
+                "eu"
+              ],
+              "default": "com",
+              "description": "Region to your account"
+          }
+      }
+    }
+  ],
+  "info": {
+    "title": "Dataset",
+    "version": "4.0.0",
+    "contact": {
+      "email": "admin@kissflow.com"
+    }
+  },
+  "openapi": "3.0.0"
+}
