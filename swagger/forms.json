@@ -1,6 +1,52 @@
 {
   "paths": {
-    
+    "/form/2/{account_id}/{form_id}": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "Create a new form record",
+        "description": "This endpoint lets you create a new form record.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/AccountId"
+          },
+          {
+            "$ref": "#/components/parameters/FormId"
+          }
+        ],
+        "requestBody": {
+          "description": "Please make a note of the request payload to create a new form record. <br /> Name - `Key` column value of the form. It is a unique string that identifies the record you are trying to create in the form. It is a mandatory parameter<br /> Field1 - Value to be added in the `Field1` column in the form",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true,
+                "example": {
+                  "Name": "Blackwidow",
+                  "Key": 10
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Added the form record successfully"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    }
   },
   "tags": [
     {
@@ -101,7 +147,28 @@
           "name": "X-Access-Key-Secret",
           "in": "header"
       }
-  }},
+    },
+    "parameters": {
+      "AccountId": {
+        "name": "account_id",
+        "in": "path",
+        "description": "This is your Kissflow <<glossary:Account ID>>",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "FormId": {
+        "name": "form_id",
+        "in": "path",
+        "description": "The <<glossary:Form ID>> is a unique identifier for each form",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    }
+  },
   "servers": [
     {
       "url": "https://{domain}.kissflow.{region}",
