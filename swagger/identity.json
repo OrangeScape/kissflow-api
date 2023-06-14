@@ -1,77 +1,1050 @@
 {
   "paths": {
-      "/user/2/{account_id}/api/verify": {
-          "get": {
-            "summary": "Represents a user",
-            "tags": [
-              "User"
-            ],
-            "description": "Get current user details",
-            "parameters": [
-              {
-                "name": "account_id",
-                "in": "path",
-                "description": "ID of account",
-                "required": true,
+    "/user/2/{account_id}/": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "This endpoint lets you create a new user in Kissflow.",
+        "summary": "Create a new user",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip_email",
+            "in": "query",
+            "description": "Flag to skip sending email to the new user. This is an optional parameter.",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body for the Create user",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserParams"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "This request creates a new user in Kissflow.",
+            "content": {
+              "application/json": {
                 "schema": {
+                  "$ref": "#/components/schemas/CreateUserResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "This endpoint lets you retrieve all the users in your Kissflow account.",
+        "summary": "Get user list",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "This is the specific page number of an item list. The page number can be specified as 1, 2, 3 etc. This is a mandatory parameter.",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The number of items that can be listed in a page. It can be 10, 25, 50, 100, etc. This is a mandatory parameter.",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The search filter string. This is an optional parameter.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_type",
+            "in": "query",
+            "description": "<<glossary:User Type>> defines the permission of a specific user in Kissflow.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Billing Admin",
+                "User Admin",
+                "Super Admin"
+              ]
+            }
+          },
+          {
+            "name": "invited_user",
+            "in": "query",
+            "description": "<<glossary:User Type>> defines Whether to Add the invited user in the API filter in Kissflow.",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request retrieves the list of all users based on the filter set by you.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DefaultUser"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/user/2/{account_id}/batch": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "This endpoint lets you perform bulk user actions like name and email change, user permission change, user deletions, etc. in Kissflow.",
+        "summary": "Bulk user actions",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/BatchUpdateUser"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request performs bulk user actions like user name change, email change, deletion, suspension etc. successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BaseSchema"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/user/2/{account_id}/deactivate": {
+      "post": {
+        "deprecated": true,
+        "tags": [
+          "User"
+        ],
+        "description": "This endpoint lets you deactivate users in Kissflow. To include the User ID in the request, you can add the value under Body parameters > String field. If you need to deactivate multiple users, their User IDs should be provided as a string separated by commas.",
+        "summary": "Deactivate user",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
                   "type": "string"
                 }
               }
-            ],
-            "responses": {
-              "200": {
-                "description": "user returned",
-                "content": {
-                  "application/json": {
-                    "schema": {
-                      "$ref": "#/components/schemas/DefaultStatus"
-                    }
-                  }
-                }
-              },
-              "202": {
-                "description": "User Not Founded",
-                "content": {
-                  "application/json": {
-                    "schema": {
-                      "$ref": "#/components/schemas/DefaultErrorSchema"
-                    }
-                  }
-                }
-              },
-              "401": {
-                "$ref": "#/components/responses/NotAuthorized"
-              },
-              "404": {
-                "$ref": "#/components/responses/NotFound"
-              },
-              "403": {
-                "$ref": "#/components/responses/Forbidden"
-              }
-            },
-            "security": [
-              {
-                "X-Api-Key": []
-              },
-              {
-                "X-Access-Key-Id": []
-              },
-              {
-                "X-Access-Key-Secret": []
-              }
-            ]
+            }
           }
-        }
+        },
+        "responses": {
+          "200": {
+            "description": "This request retrieves the list of deactivated users in Kissflow.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BaseSchema"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/user/2/{account_id}/activate": {
+      "post": {
+        "deprecated": true,
+        "tags": [
+          "User"
+        ],
+        "description": "This endpoint lets you activate users in Kissflow. To include the User ID in the request, you can add the value under Body parameters > String field. If you need to activate multiple user IDs, they should be provided as a string separated by commas.",
+        "summary": "Activate a new user",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request retrieves a list of activated users in Kissflow.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BaseSchema"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/user/2/{account_id}/{user_id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "This endpoint lets you retrieve a user's details in your Kissflow account.",
+        "summary": "Get user details",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "The unique <<glossary:User ID>> of a Kissflow user. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request retrieves the user details of a particular user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultUser"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/user/2/{account_id}/{user_id}/{field_id}/attachment": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "This endpoint lets you upload attachment file to a field in your user table.",
+        "summary": "Upload attachment",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "The unique <<glossary:User ID>> of a Kissflow user. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "The unique identifier assigned to each column of a user table. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request successfully uploads an attachment to a field in the user table.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseSchema"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/user/2/{account_id}/{user_id}/{field_id}/attachment/{attachment_id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "This endpoint lets you download a specific attachment file from a field in your user table.",
+        "summary": "Download attachment",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "The unique <<glossary:User ID>> of a Kissflow user. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "The unique identifier assigned to each column of a user table. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attachment_id",
+            "in": "path",
+            "description": "This is the unique <<glossary:Attachment ID>> of your attached file.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request successfully downloads an attachment file from a field in your user management table.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseSchema"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/group/2/{account_id}/{group_id}": {
+      "get": {
+        "tags": [
+          "Group"
+        ],
+        "description": "This endpoint lets you retrieve the details of individual members of a specific group.",
+        "summary": "Get group details",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "group_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Group ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request successfully retrieves details about individual users of that group.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupSchema"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Group"
+        ],
+        "description": "This endpoint lets you delete a group in Kissflow.",
+        "summary": "Delete a group",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "group_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Group ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request successfully deletes a group from Kissflow.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultStatus"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/group/2/{account_id}/": {
+      "post": {
+        "tags": [
+          "Group"
+        ],
+        "description": "This endpoint lets you create a new group in Kissflow.",
+        "summary": "Create a new group",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateGroup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "This request creates a new group in Kissflow.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultStatus"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/group/2/{account_id}/list": {
+      "get": {
+        "tags": [
+          "Group"
+        ],
+        "description": "This endpoint retrieves the list of groups for a specific filter view.",
+        "summary": "List groups by page",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "This is the specific page number of an item list. The page number can be specified as 1, 2, 3, etc. This is a mandatory parameter.",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The number of items that can be listed in a page. It can be 10, 25, 50, 100, etc. This is a mandatory parameter.",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The search filter string. This is an optional parameter.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request retrieves list of all groups based on a selected pagination view.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BaseGroup"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "List groups by page",
+        "description": "List Of groups For Admin Group management",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "This is the specific page number of an item list. The page number can be specified as 1, 2, 3, etc. This is a mandatory parameter.",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The number of items that can be listed in a page. It can be 10, 25, 50, 100, etc. This is a mandatory parameter.",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The search filter string. This is an optional parameter.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Sort": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "Id": {
+                          "type": "string",
+                          "description": "field id"
+                        },
+                        "Name": {
+                          "type": "string",
+                          "enum": [
+                            "ASC",
+                            "DESC"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of groups",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BaseGroup"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/group/2/{account_id}/{group_id}/members": {
+      "get": {
+        "tags": [
+          "Group"
+        ],
+        "description": "This endpoint retrieves the user list of a given group for a specific filter view.",
+        "summary": "Get group details by page",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "group_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Group ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "This is the specific page number of an item list. The page number can be specified as 1, 2, 3 etc. This is a mandatory parameter.",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The number of items that can be listed in a page. It can be 10, 25, 50, 100, etc. This is a mandatory parameter.",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Specify the fields that are required in API response. You can specify multiple fields as comma separated values."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request retrieves details about individual user records of that group based on a selected pagination view.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DefaultUser"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    }
   },
   "tags": [
-      {
-          "name": "User",
-          "description": "Create and manage users in Kissflow using these API endpoints.",
-          "externalDocs": {
-            "description": "Find out more",
-            "url": "https://kissflow.com"
-          }
+    {
+      "name": "User",
+      "description": "Create and manage users in Kissflow using these API endpoints.",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "https://kissflow.com"
       }
+    }
   ],
   "components": {
     "responses": {
@@ -144,41 +1117,404 @@
           "_id",
           "error_code"
         ]
+      },
+      "CreateUserParams": {
+        "type": "object",
+        "properties": {
+          "FirstName": {
+            "type": "string"
+          },
+          "Email": {
+            "type": "string",
+            "format": "email"
+          },
+          "Manager": {
+            "$ref": "#/components/schemas/ManagerInUser"
+          },
+          "LastName": {
+            "type": "string"
+          },
+          "Phone": {
+            "type": "string"
+          },
+          "NickName": {
+            "type": "string"
+          },
+          "Groups": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "Email"
+        ]
+      },
+      "CreateUserResponse": {
+        "type": "object",
+        "properties": {
+          "FirstName": {
+            "type": "string"
+          },
+          "Status": {
+            "type": "string"
+          },
+          "DelegationEndDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "Kind": {
+            "type": "string"
+          },
+          "AppConfig": {
+            "$ref": "#/components/schemas/AppConfigSchem"
+          },
+          "Manager": {
+            "$ref": "#/components/schemas/BaseUser"
+          },
+          "Phone": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "_modified_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "_created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "_created_by": {
+            "$ref": "#/components/schemas/DefaultUser"
+          },
+          "DelegationStartDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "LastName": {
+            "type": "string"
+          },
+          "Accessibility": {
+            "type": "string"
+          },
+          "Designation": {
+            "type": "string"
+          },
+          "NickName": {
+            "type": "string"
+          },
+          "UserType": {
+            "type": "string"
+          },
+          "ProfilePicture": {
+            "type": "string"
+          },
+          "TimeZone": {
+            "type": "object"
+          },
+          "Signature": {
+            "type": "string",
+            "format": "url"
+          },
+          "UserSystemType": {
+            "type": "integer"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "Language": {
+            "type": "string"
+          },
+          "DelegatedTo": {
+            "$ref": "#/components/schemas/BaseUser"
+          },
+          "_modified_by": {
+            "$ref": "#/components/schemas/DefaultUser"
+          },
+          "Groups": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "DefaultUser": {
+        "type": "object",
+        "properties": {
+          "Phone": {
+            "type": "string"
+          },
+          "UserType": {
+            "type": "string"
+          },
+          "FirstName": {
+            "type": "string"
+          },
+          "UserSystemType": {
+            "type": "integer"
+          },
+          "ProfilePicture": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "Status": {
+            "type": "string"
+          },
+          "Kind": {
+            "type": "string"
+          },
+          "LastName": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "NickName": {
+            "type": "string"
+          },
+          "Groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GroupsInUser"
+            }
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "BaseSchema": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "BatchUpdateUser": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "ManagerInUser": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Kind": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "AppConfigSchem": {
+        "type": "object",
+        "properties": {
+          "ProfileBasePath": {
+            "type": "string",
+            "format": "url"
+          },
+          "UploadHost": {
+            "type": "string",
+            "format": "url"
+          }
+        }
+      },
+      "BaseUser": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Kind": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "GroupsInUser": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "GroupSchema": {
+        "type": "object",
+        "properties": {
+          "UserCount": {
+            "type": "integer"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "GroupCount": {
+            "type": "integer"
+          },
+          "GroupMembers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DefaultUser"
+            }
+          },
+          "SyncFrom": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "CreateGroup": {
+        "type": "object",
+        "properties": {
+          "Users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Identity"
+            }
+          },
+          "Email": {
+            "type": "string",
+            "format": "email"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Description": {
+            "type": "string"
+          },
+          "Groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Identity"
+            }
+          }
+        },
+        "required": [
+          "Name"
+        ]
+      },
+      "BaseGroup": {
+        "type": "object",
+        "properties": {
+          "UserCount": {
+            "type": "integer"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "GroupCount": {
+            "type": "integer"
+          },
+          "SyncFrom": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "Identity": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "IsDelete": {
+            "type": "boolean"
+          },
+          "Kind": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
       }
     },
     "securitySchemes": {
       "X-Api-Key": {
-          "type": "apiKey",
-          "name": "X-Api-Key",
-          "in": "header"
+        "type": "apiKey",
+        "name": "X-Api-Key",
+        "in": "header"
       },
       "X-Access-Key-Id": {
-          "type": "apiKey",
-          "name": "X-Access-Key-Id",
-          "in": "header"
+        "type": "apiKey",
+        "name": "X-Access-Key-Id",
+        "in": "header"
       },
       "X-Access-Key-Secret": {
-          "type": "apiKey",
-          "name": "X-Access-Key-Secret",
-          "in": "header"
+        "type": "apiKey",
+        "name": "X-Access-Key-Secret",
+        "in": "header"
       }
-  }},
+    }
+  },
   "servers": [
     {
       "url": "https://{domain}.kissflow.{region}",
       "variables": {
-          "domain": {
-              "default": "demo",
-              "description": "Sub-domain to your account"
-          },
-          "region": {
-              "enum": [
-                "com",
-                "eu"
-              ],
-              "default": "com",
-              "description": "Region to your account"
-          }
+        "domain": {
+          "default": "demo",
+          "description": "Sub-domain to your account"
+        },
+        "region": {
+          "enum": [
+            "com",
+            "eu"
+          ],
+          "default": "com",
+          "description": "Region to your account"
+        }
       }
     }
   ],
