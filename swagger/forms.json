@@ -1,6 +1,324 @@
 {
   "paths": {
-    
+    "/form/2/{account_id}/{form_id}": {
+      "post": {
+        "tags": [
+          "Form"
+        ],
+        "description": "This endpoint lets you create a new form record.",
+        "summary": "Create a new form record",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "form_id",
+            "in": "path",
+            "description": "The <<glossary:Form ID>> is a unique identifier for each form",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request payload to create a new form record <br /> Name - `Key` column value of the form. It is a unique string that identifies the record you are trying to create in the form. It is a mandatory parameter<br /> Field1 - Value to be added in the `Field1` column in the form",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Field1": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "Name": 10,
+                  "Field1": "Blackwidow"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Added the form record successfully"
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Form"
+        ],
+        "description": "This endpoint lets you delete a specific form record.",
+        "summary": "Delete a specific form record",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "form_id",
+            "in": "path",
+            "description": "The <<glossary:Form ID>> is a unique identifier for each form",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted the form record successfully"
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Form"
+        ],
+        "description": "This endpoint lets you update an existing form record.",
+        "summary": "Update an existing form record",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "form_id",
+            "in": "path",
+            "description": "The <<glossary:Form ID>> is a unique identifier for each form",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request payload to update a form record <br /> Name - `Key` column value of the form. It is a unique string that identifies the record you are trying to update in the form. It is a mandatory parameter<br /> Field1 - Value to be updated in the `Field1` column in the form",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Field1": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "Name": 10,
+                  "Field1": "Blackwidow"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated the form record successfully"
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Form"
+        ],
+        "description": "This endpoint lets you fetch a specific form record.",
+        "summary": "Get an existing form record",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "form_id",
+            "in": "path",
+            "description": "The <<glossary:Form ID>> is a unique identifier for each form",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Name",
+            "in": "query",
+            "description": "Key column value of the form. It is a unique string that identifies the record you are trying to fetch from the form. It is a mandatory parameter<br />",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Instance by the instance name(key field)"
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          },
+          {
+
+          }
+        ]
+      }
+    },
+    "/form/2/{account_id}/{form_id}/list": {
+      "get": {
+        "tags": [
+          "Form"
+        ],
+        "description": "This endpoint lets you retrieve a specific form's records, including the form's fields and its respective values.",
+        "summary": "Get form records",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "form_id",
+            "in": "path",
+            "description": "Your Kissflow Form id. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request retrieves all the items of a specified form flow.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GRIDDataResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    }
   },
   "tags": [
     {
