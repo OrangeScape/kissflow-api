@@ -5,6 +5,7 @@
         "tags": [
           "Dataset"
         ],
+        "summary": "Get an existing dataset record",
         "description": "Get an existing dataset Information",
         "parameters": [
           {
@@ -664,9 +665,6 @@
       "Field": {
         "type": "object",
         "properties": {
-          "Id": {
-            "type": "string"
-          },
           "Type": {
             "type": "string"
           },
@@ -675,6 +673,9 @@
           },
           "IsSystemField": {
             "type": "boolean"
+          },
+          "Id": {
+            "type": "string"
           }
         }
       },
@@ -695,20 +696,20 @@
       "LookupResponseOfAInstance": {
         "type": "object",
         "properties": {
-          "RequestedBy": {
-            "$ref": "#/components/schemas/System"
-          },
-          "Name": {
+          "PONumber": {
             "type": "string"
           },
-          "_id": {
+          "Name": {
             "type": "string"
           },
           "TotalPrice": {
             "type": "string"
           },
-          "PONumber": {
+          "_id": {
             "type": "string"
+          },
+          "RequestedBy": {
+            "$ref": "#/components/schemas/System"
           }
         }
       },
@@ -726,20 +727,20 @@
       "UpdateDictOfAInstance": {
         "type": "object",
         "properties": {
-          "RequestedBy": {
-            "$ref": "#/components/schemas/System"
-          },
-          "Name": {
+          "PONumber": {
             "type": "string"
           },
-          "_id": {
+          "Name": {
             "type": "string"
           },
           "TotalPrice": {
             "type": "string"
           },
-          "PONumber": {
+          "_id": {
             "type": "string"
+          },
+          "RequestedBy": {
+            "$ref": "#/components/schemas/System"
           }
         },
         "required": [
@@ -750,8 +751,11 @@
       "UpdateDictOfAInstanceResponse": {
         "type": "object",
         "properties": {
-          "RequestedBy": {
+          "_modified_by": {
             "$ref": "#/components/schemas/System"
+          },
+          "PONumber": {
+            "type": "string"
           },
           "_modified_at": {
             "type": "string",
@@ -760,17 +764,14 @@
           "Name": {
             "type": "string"
           },
-          "_modified_by": {
-            "$ref": "#/components/schemas/System"
+          "TotalPrice": {
+            "type": "string"
           },
           "_id": {
             "type": "string"
           },
-          "TotalPrice": {
-            "type": "string"
-          },
-          "PONumber": {
-            "type": "string"
+          "RequestedBy": {
+            "$ref": "#/components/schemas/System"
           }
         },
         "required": [
@@ -803,6 +804,12 @@
       "GRIDDataResponse": {
         "type": "object",
         "properties": {
+          "Columns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Field"
+            }
+          },
           "Table_TableName": {
             "type": "array",
             "items": {
@@ -811,12 +818,6 @@
           },
           "Filter": {
             "type": "object"
-          },
-          "Columns": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Field"
-            }
           }
         }
       },
@@ -835,16 +836,16 @@
       "DefaultErrorSchema": {
         "type": "object",
         "properties": {
-          "_id": {
-            "type": "string"
-          },
           "args": {
             "type": "object"
           },
-          "message": {
+          "en_message": {
             "type": "string"
           },
-          "en_message": {
+          "_id": {
+            "type": "string"
+          },
+          "message": {
             "type": "string"
           },
           "error_code": {
