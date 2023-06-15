@@ -401,6 +401,95 @@
           "_id",
           "error_code"
         ]
+      },
+      "GRIDDataResponse": {
+        "type": "object",
+        "properties": {
+          "Table_TableName": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BatchUpdate"
+            }
+          },
+          "Filter": {
+            "type": "object"
+          },
+          "Columns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Field"
+            }
+          }
+        }
+      },
+      "BatchUpdate": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UpdateDictOfAInstance"
+            }
+          }
+        }
+      },
+      "Field": {
+        "type": "object",
+        "properties": {
+          "ReadOnly": {
+            "type": "string"
+          },
+          "Type": {
+            "type": "string"
+          },
+          "Id": {
+            "type": "string"
+          },
+          "width": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateDictOfAInstance": {
+        "type": "object",
+        "properties": {
+          "TotalPrice": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "PONumber": {
+            "type": "string"
+          },
+          "RequestedBy": {
+            "$ref": "#/components/schemas/System"
+          }
+        },
+        "required": [
+          "Name",
+          "_id"
+        ]
+      },
+      "System": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
       }
     },
     "securitySchemes": {
