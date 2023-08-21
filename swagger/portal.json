@@ -1,0 +1,2729 @@
+{
+  "paths": {
+    "/user/2/{account_id}/portal/{portal_id}/{model_id}/assignee": {
+      "get": {
+        "tags": [
+          "Portal"
+        ],
+        "description": "Get Assignee List user and Groups together",
+        "summary": "Get User and Group list",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow Account ID. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "portal_id",
+            "in": "path",
+            "description": "ID of portal",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "model_id",
+            "in": "path",
+            "description": "ID of model",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "This is the specific page number of an item list. The page number can be specified as 1, 2, 3 etc. This is a mandatory parameter.",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The number of items that can be listed in a page. It can be 10, 25, 50, 100, etc. This is a mandatory parameter",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The search filter string. This is an optional parameter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "invited_user",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assignee list return",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Assignee"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Portal"
+        ],
+        "description": "assignee list from list of user and group ids",
+        "summary": "Get User and Group list based on ids",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow Account ID. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "portal_id",
+            "in": "path",
+            "description": "ID of portal",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "model_id",
+            "in": "path",
+            "description": "Model id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "This is the specific page number of an item list. The page number can be specified as 1, 2, 3 etc. This is a mandatory parameter.",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The number of items that can be listed in a page. It can be 10, 25, 50, 100, etc. This is a mandatory parameter",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The search filter string",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "invited_user",
+            "in": "query",
+            "description": "invited_user will used to filter the user by status",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Ids": {
+                    "type": "array",
+                    "description": "List of user and group ids",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "Fields": {
+                    "description": "List of fields ids",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "Sort": {
+                    "description": "List of objects with field ids and its sort",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "Id": {
+                          "type": "string"
+                        },
+                        "SortType": {
+                          "type": "string",
+                          "enum": [
+                            "ASC",
+                            "DESC"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of Users in given groups",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Assignee"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/user/2/{account_id}/portal/{portal_id}/{model_id}/list": {
+      "get": {
+        "tags": [
+          "Portal"
+        ],
+        "description": "This endpoint lets you retrieve all the users from given portal.",
+        "summary": "Get list of users",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow Account ID. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "portal_id",
+            "in": "path",
+            "description": "ID of portal",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "model_id",
+            "in": "path",
+            "description": "Model id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "This is the specific page number of an item list. The page number can be specified as 1, 2, 3 etc. This is a mandatory parameter.",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The number of items that can be listed in a page. It can be 10, 25, 50, 100, etc. This is a mandatory parameter",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The search filter string. This is an optional parameter.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserGridList"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Portal"
+        ],
+        "description": "This endpoint lets you retrieve all the users from given portal.",
+        "summary": "Get list of users for given user ids",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow Account ID. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "portal_id",
+            "in": "path",
+            "description": "ID of portal",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "model_id",
+            "in": "path",
+            "description": "Model id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "This is the specific page number of an item list. The page number can be specified as 1, 2, 3 etc. This is a mandatory parameter.",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The number of items that can be listed in a page. It can be 10, 25, 50, 100, etc. This is a mandatory parameter",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The search filter string. This is an optional parameter.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Sort": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "Id": {
+                          "type": "string",
+                          "description": "field id"
+                        },
+                        "Name": {
+                          "type": "string",
+                          "enum": [
+                            "ASC",
+                            "DESC"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "Columns": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "Id": {
+                          "type": "string",
+                          "description": "field id"
+                        }
+                      }
+                    }
+                  },
+                  "Filter": {
+                    "type": "object",
+                    "properties": {
+                      "OR": {
+                        "type": "array",
+                        "items": {
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "OR": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "LHSField": {
+                                      "type": "string",
+                                      "description": "field id exp (Email, Phone, Groups, etc., )"
+                                    },
+                                    "Operator": {
+                                      "type": "string",
+                                      "description": "Operator exp (CONTAINS, EQUAL_TO, NOT_EQUAL_TO, etc.,)"
+                                    },
+                                    "RHSType": {
+                                      "type": "string",
+                                      "description": "RHSType exp (Value, Field)"
+                                    },
+                                    "RHSValue": {
+                                      "type": "string",
+                                      "description": "value"
+                                    },
+                                    "RHSField": {
+                                      "type": "string",
+                                      "description": "RHSField field id (Email, Phone, Groups, etc., )"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserGridList"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/user/2/{account_id}/portal/{portal_id}/{model_id}/count": {
+      "get": {
+        "tags": [
+          "Portal"
+        ],
+        "description": "This endpoint lets you get count of users in this portal.",
+        "summary": "Get user count",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow Account ID. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "portal_id",
+            "in": "path",
+            "description": "ID of portal",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "model_id",
+            "in": "path",
+            "description": "Model id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "This is to get count of users in portal.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Count"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/user/2/{account_id}/portal/{portal_id}/{model_id}/status/count": {
+      "get": {
+        "tags": [
+          "Portal"
+        ],
+        "description": "This endpoint lets you get count of users by user status.",
+        "summary": "Get user count by status",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow Account ID. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "portal_id",
+            "in": "path",
+            "description": "ID of portal",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "model_id",
+            "in": "path",
+            "description": "Model id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "This is to get count of users by user status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserStatusCount"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/user/2/{account_id}/portal/{portal_id}/{model_id}/": {
+      "post": {
+        "tags": [
+          "Portal"
+        ],
+        "description": "This endpoint lets you create user and add the user to the portal.",
+        "summary": "create user",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow Account ID. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "portal_id",
+            "in": "path",
+            "description": "ID of portal",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "model_id",
+            "in": "path",
+            "description": "Model id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body for the Create user",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PortalCreateUserParams"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "This request creates a new user in portal.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultStatus"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request to create a new user could not be processed due to a malformed request syntax. Check if you've entered the first name, phone number, and email in the body parameters fields.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/user/2/{account_id}/portal/{portal_id}/{model_id}/fields": {
+      "get": {
+        "tags": [
+          "Portal"
+        ],
+        "description": "User field list",
+        "summary": "Get user field list",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "ID of account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "portal_id",
+            "in": "path",
+            "description": "ID of portal",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "model_id",
+            "in": "path",
+            "description": "ID of User Model",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User field list return",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserField"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/user/2/{account_id}/portal/{portal_id}/{model_id}/{user_id}/profile": {
+      "get": {
+        "tags": [
+          "Portal"
+        ],
+        "description": "Get user profile page details",
+        "summary": "Get user details",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow Account ID. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "portal_id",
+            "in": "path",
+            "description": "ID of portal",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "model_id",
+            "in": "path",
+            "description": "ID of model",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "ID of User",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get User profile page details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfile"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/user/2/{account_id}/portal/{portal_id}/{model_id}/password/forcereset": {
+      "post": {
+        "tags": [
+          "Portal"
+        ],
+        "description": "Batch reset password for users",
+        "summary": "Bulk reset password",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow Account ID. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "portal_id",
+            "in": "path",
+            "description": "ID of portal",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "model_id",
+            "in": "path",
+            "description": "Model id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success acknowledgement message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultStatus"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/user/2/{account_id}/portal/{portal_id}/{model_id}/activate": {
+      "post": {
+        "tags": [
+          "Portal"
+        ],
+        "description": "Batch activate for users",
+        "summary": "Bulk user activate",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow Account ID. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "portal_id",
+            "in": "path",
+            "description": "ID of Portal",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "model_id",
+            "in": "path",
+            "description": "model of Portal",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success acknowledgement message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultStatus"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/user/2/{account_id}/portal/{portal_id}/{model_id}/deactivate": {
+      "post": {
+        "tags": [
+          "Portal"
+        ],
+        "description": "Batch deactivate for users",
+        "summary": "Bulk user deactivate",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow Account ID. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "portal_id",
+            "in": "path",
+            "description": "ID of portal",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "model_id",
+            "in": "path",
+            "description": "modelId of account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success acknowledgement message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultStatus"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/user/2/{account_id}/portal/{portal_id}/{model_id}/assignee/count": {
+      "get": {
+        "tags": [
+          "Portal"
+        ],
+        "description": "Get user and Groups together count",
+        "summary": "Get User and Group Count",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow Account ID. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "portal_id",
+            "in": "path",
+            "description": "ID of portal",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "model_id",
+            "in": "path",
+            "description": "Model id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The search filter string",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "invited_user",
+            "in": "query",
+            "description": "invited_user will be used to filter the user by status",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "skip_service_account",
+            "in": "query",
+            "description": "skip_service_account will be used to skip service account",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Count of Users in given groups",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Count"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "GroupsInUser": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "DefaultUser": {
+        "type": "object",
+        "properties": {
+          "FirstName": {
+            "type": "string"
+          },
+          "NickName": {
+            "type": "string"
+          },
+          "Phone": {
+            "type": "string"
+          },
+          "UserType": {
+            "type": "string"
+          },
+          "Status": {
+            "type": "string"
+          },
+          "Kind": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "LastName": {
+            "type": "string"
+          },
+          "UserSystemType": {
+            "type": "integer"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "Groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GroupsInUser"
+            }
+          },
+          "ProfilePicture": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "AppConfigSchem": {
+        "type": "object",
+        "properties": {
+          "UploadHost": {
+            "type": "string",
+            "format": "url"
+          },
+          "ProfileBasePath": {
+            "type": "string",
+            "format": "url"
+          }
+        }
+      },
+      "BaseUser": {
+        "type": "object",
+        "properties": {
+          "Kind": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "CurrentUser": {
+        "type": "object",
+        "properties": {
+          "DelegationEndDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "Status": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "AppConfig": {
+            "$ref": "#/components/schemas/AppConfigSchem"
+          },
+          "Phone": {
+            "type": "string"
+          },
+          "LastName": {
+            "type": "string"
+          },
+          "Accessibility": {
+            "type": "string"
+          },
+          "Signature": {
+            "type": "string",
+            "format": "url"
+          },
+          "ProfilePicture": {
+            "type": "string"
+          },
+          "FirstName": {
+            "type": "string"
+          },
+          "Manager": {
+            "$ref": "#/components/schemas/BaseUser"
+          },
+          "Language": {
+            "type": "string"
+          },
+          "Designation": {
+            "type": "string"
+          },
+          "UserType": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "NickName": {
+            "type": "string"
+          },
+          "DelegatedTo": {
+            "$ref": "#/components/schemas/BaseUser"
+          },
+          "DelegationStartDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "Kind": {
+            "type": "string"
+          },
+          "UserSystemType": {
+            "type": "integer"
+          },
+          "TimeZone": {
+            "type": "object"
+          },
+          "Groups": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "DefaultStatus": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "ManagerInUser": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "Kind": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "CreateUserSchema": {
+        "type": "object",
+        "properties": {
+          "FirstName": {
+            "type": "string"
+          },
+          "NickName": {
+            "type": "string"
+          },
+          "Manager": {
+            "$ref": "#/components/schemas/ManagerInUser"
+          },
+          "Email": {
+            "type": "string",
+            "format": "email"
+          },
+          "Designation": {
+            "type": "string"
+          },
+          "Phone": {
+            "type": "string"
+          },
+          "UserType": {
+            "type": "string"
+          },
+          "AboutMe": {
+            "type": "string"
+          },
+          "LastName": {
+            "type": "string"
+          },
+          "Groups": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "Email"
+        ]
+      },
+      "CreateUserResponse": {
+        "type": "object",
+        "properties": {
+          "DelegationEndDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "Status": {
+            "type": "string"
+          },
+          "_created_by": {
+            "$ref": "#/components/schemas/DefaultUser"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "AppConfig": {
+            "$ref": "#/components/schemas/AppConfigSchem"
+          },
+          "_modified_by": {
+            "$ref": "#/components/schemas/DefaultUser"
+          },
+          "Phone": {
+            "type": "string"
+          },
+          "LastName": {
+            "type": "string"
+          },
+          "Accessibility": {
+            "type": "string"
+          },
+          "Signature": {
+            "type": "string",
+            "format": "url"
+          },
+          "ProfilePicture": {
+            "type": "string"
+          },
+          "FirstName": {
+            "type": "string"
+          },
+          "Manager": {
+            "$ref": "#/components/schemas/BaseUser"
+          },
+          "Language": {
+            "type": "string"
+          },
+          "Designation": {
+            "type": "string"
+          },
+          "UserType": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "_modified_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "NickName": {
+            "type": "string"
+          },
+          "_created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "DelegatedTo": {
+            "$ref": "#/components/schemas/BaseUser"
+          },
+          "DelegationStartDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "Kind": {
+            "type": "string"
+          },
+          "UserSystemType": {
+            "type": "integer"
+          },
+          "TimeZone": {
+            "type": "object"
+          },
+          "Groups": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "Count": {
+        "type": "object",
+        "properties": {
+          "Count": {
+            "type": "integer"
+          }
+        }
+      },
+      "BaseGroup": {
+        "type": "object",
+        "properties": {
+          "SyncFrom": {
+            "type": "string"
+          },
+          "GroupCount": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "UserCount": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "UserProfile": {
+        "type": "object",
+        "properties": {
+          "DelegationEndDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "Status": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "AppConfig": {
+            "$ref": "#/components/schemas/AppConfigSchem"
+          },
+          "Phone": {
+            "type": "string"
+          },
+          "LastName": {
+            "type": "string"
+          },
+          "Accessibility": {
+            "type": "string"
+          },
+          "Signature": {
+            "type": "string",
+            "format": "url"
+          },
+          "ProfilePicture": {
+            "type": "string"
+          },
+          "FirstName": {
+            "type": "string"
+          },
+          "Manager": {
+            "$ref": "#/components/schemas/BaseUser"
+          },
+          "Language": {
+            "type": "string"
+          },
+          "Designation": {
+            "type": "string"
+          },
+          "UserType": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "NickName": {
+            "type": "string"
+          },
+          "DelegatedTo": {
+            "$ref": "#/components/schemas/BaseUser"
+          },
+          "DelegationStartDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "Kind": {
+            "type": "string"
+          },
+          "UserSystemType": {
+            "type": "integer"
+          },
+          "TimeZone": {
+            "type": "object"
+          },
+          "Groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BaseGroup"
+            }
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "UserStatusCount": {
+        "type": "object",
+        "properties": {
+          "RequestedAccess": {
+            "type": "integer"
+          },
+          "Invited": {
+            "type": "integer"
+          },
+          "InActive": {
+            "type": "integer"
+          },
+          "Active": {
+            "type": "integer"
+          }
+        }
+      },
+      "Assignee": {
+        "type": "object",
+        "properties": {
+          "Kind": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "ProfilePicture": {
+            "type": "string",
+            "format": "url"
+          }
+        },
+        "required": [
+          "Kind",
+          "ProfilePicture",
+          "_id"
+        ]
+      },
+      "UserField": {
+        "type": "object",
+        "properties": {
+          "BaseMetadata": {
+            "type": "string"
+          },
+          "Field_QueryDefinition": {
+            "type": "string"
+          },
+          "Kind": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Label": {
+            "type": "string"
+          },
+          "Type": {
+            "type": "string"
+          },
+          "Id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Id",
+          "Name"
+        ]
+      },
+      "MembersDetails": {
+        "type": "object",
+        "properties": {
+          "U": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BaseUser"
+            }
+          },
+          "G": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BaseGroup"
+            }
+          }
+        }
+      },
+      "GridColumns": {
+        "type": "object",
+        "properties": {
+          "ReadOnly": {
+            "type": "boolean"
+          },
+          "IsSystemField": {
+            "type": "boolean"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Label": {
+            "type": "string"
+          },
+          "Required": {
+            "type": "boolean"
+          },
+          "Type": {
+            "type": "string"
+          },
+          "Id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Id",
+          "Name"
+        ]
+      },
+      "UserGridList": {
+        "type": "object",
+        "properties": {
+          "Filter": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "Table_User": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DefaultUser"
+            }
+          },
+          "_id": {
+            "type": "string"
+          },
+          "Sort": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "Columns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GridColumns"
+            }
+          }
+        },
+        "required": [
+          "Columns",
+          "_id"
+        ]
+      },
+      "GroupSchema": {
+        "type": "object",
+        "properties": {
+          "GroupMembers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DefaultUser"
+            }
+          },
+          "SyncFrom": {
+            "type": "string"
+          },
+          "GroupCount": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "UserCount": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "Identity": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "Kind": {
+            "type": "string"
+          },
+          "IsDelete": {
+            "type": "boolean"
+          },
+          "Name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "CreateGroup": {
+        "type": "object",
+        "properties": {
+          "Email": {
+            "type": "string",
+            "format": "email"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Identity"
+            }
+          },
+          "_id": {
+            "type": "string"
+          },
+          "Groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Identity"
+            }
+          },
+          "Description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name"
+        ]
+      },
+      "UserSort": {
+        "type": "object",
+        "properties": {
+          "SortType": {
+            "type": "string"
+          },
+          "Id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Id",
+          "SortType"
+        ]
+      },
+      "GetMembersRequest": {
+        "type": "object",
+        "properties": {
+          "Fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Sort": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserSort"
+            }
+          },
+          "Ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "Ids"
+        ]
+      },
+      "System": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "LookupResponseOfAInstance": {
+        "type": "object",
+        "properties": {
+          "TotalPrice": {
+            "type": "string"
+          },
+          "PONumber": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "RequestedBy": {
+            "$ref": "#/components/schemas/System"
+          },
+          "_id": {
+            "type": "string"
+          }
+        }
+      },
+      "Base": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "ApiKeysSchema": {
+        "type": "object",
+        "properties": {
+          "User": {
+            "$ref": "#/components/schemas/Base"
+          },
+          "_created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "IsInActive": {
+            "type": "boolean"
+          },
+          "_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "DefaultErrorSchema": {
+        "type": "object",
+        "properties": {
+          "error_code": {
+            "type": "string"
+          },
+          "args": {
+            "type": "object"
+          },
+          "en_message": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id",
+          "error_code"
+        ]
+      },
+      "BaseSchema": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "UserSetting": {
+        "type": "object",
+        "properties": {
+          "Language": {
+            "type": "object",
+            "nullable": true
+          },
+          "DelegationEndDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "DelegatedTo": {
+            "$ref": "#/components/schemas/BaseUser"
+          },
+          "DelegationStartDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "Kind": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Accessibility": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "TimeZone": {
+            "type": "object",
+            "nullable": true
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "JoinUserParams": {
+        "type": "object",
+        "properties": {
+          "FirstName": {
+            "type": "string"
+          },
+          "Phone": {
+            "type": "string"
+          },
+          "Email": {
+            "type": "string",
+            "format": "email"
+          },
+          "LastName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Email",
+          "FirstName"
+        ]
+      },
+      "AppRoleRequestSchema": {
+        "type": "object",
+        "properties": {
+          "SyncFrom": {
+            "type": "string"
+          },
+          "GroupCount": {
+            "type": "integer"
+          },
+          "Preference": {
+            "$ref": "#/components/schemas/BaseSchema"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Kind": {
+            "type": "string"
+          },
+          "ApplicationId": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "UserCount": {
+            "type": "integer"
+          },
+          "Description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "AppRoleSchema": {
+        "type": "object",
+        "properties": {
+          "GroupMembers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DefaultUser"
+            }
+          },
+          "SyncFrom": {
+            "type": "string"
+          },
+          "GroupCount": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Kind": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "UserCount": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "BatchResendResponseSchema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "UnverifiedUsersCount": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "UnverifiedUsersCount",
+          "status"
+        ]
+      },
+      "ResetPasswordResponseSchema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "PasswordResetUserCount": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "PasswordResetUserCount",
+          "status"
+        ]
+      },
+      "BatchUserResendSchema": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "ResendVerificationSchema": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "Field": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "KissflowTFAStatus": {
+        "type": "object",
+        "properties": {
+          "Primary": {
+            "type": "string"
+          },
+          "IsEnabled": {
+            "type": "boolean"
+          }
+        }
+      },
+      "KissflowLoginResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "TFAConfig": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "TFAStatus": {
+            "$ref": "#/components/schemas/KissflowTFAStatus"
+          }
+        }
+      },
+      "KissflowLogin": {
+        "type": "object",
+        "properties": {
+          "Email": {
+            "type": "string"
+          },
+          "Password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Email",
+          "Password"
+        ]
+      },
+      "SignatureField": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "key"
+        ]
+      },
+      "UpdateUserProfileSettings": {
+        "type": "object",
+        "properties": {
+          "Email": {
+            "type": "string"
+          },
+          "DelegationEndDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "LastName": {
+            "type": "string"
+          },
+          "Accessibility": {
+            "type": "string"
+          },
+          "Signature": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SignatureField"
+              }
+            ]
+          },
+          "ProfilePicture": {
+            "type": "object"
+          },
+          "FirstName": {
+            "type": "string"
+          },
+          "Language": {
+            "type": "object",
+            "nullable": true
+          },
+          "Manager": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseUser"
+              }
+            ]
+          },
+          "Designation": {
+            "type": "string"
+          },
+          "DateFormat": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "NickName": {
+            "type": "string"
+          },
+          "DelegatedTo": {
+            "$ref": "#/components/schemas/BaseUser"
+          },
+          "DelegationStartDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "Kind": {
+            "type": "string"
+          },
+          "AboutMe": {
+            "type": "string"
+          },
+          "TimeZone": {
+            "type": "object",
+            "nullable": true
+          }
+        }
+      },
+      "UpdatePassword": {
+        "type": "object",
+        "properties": {
+          "OldPassword": {
+            "type": "string"
+          },
+          "Password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "OldPassword",
+          "Password"
+        ]
+      },
+      "DefaultUploadSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "isProfile": {
+            "type": "boolean"
+          },
+          "size": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "isProfile",
+          "name",
+          "size"
+        ]
+      },
+      "ConfigJsonSchema": {
+        "type": "object",
+        "properties": {
+          "Filter": {
+            "type": "object"
+          },
+          "SortType": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "required": [
+          "Filter"
+        ]
+      },
+      "BulkPayloadSchema": {
+        "type": "object",
+        "properties": {
+          "Filter": {
+            "type": "object"
+          },
+          "SortType": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "Data": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "Data",
+          "Filter"
+        ]
+      },
+      "ProactiveResponse": {
+        "type": "object",
+        "properties": {
+          "Status": {
+            "type": "string"
+          },
+          "Failures": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "ReasonCode": {
+            "type": "string"
+          },
+          "Count": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "Count",
+          "ReasonCode",
+          "Status"
+        ]
+      },
+      "BulkActionResponse": {
+        "type": "object",
+        "properties": {
+          "action_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "action_id"
+        ]
+      },
+      "BatchUpdateUser": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "ServiceAccountCreateUserParams": {
+        "type": "object",
+        "properties": {
+          "ProfilePicture": {
+            "type": "object"
+          },
+          "FirstName": {
+            "type": "string"
+          },
+          "Description": {
+            "type": "string"
+          }
+        }
+      },
+      "ServiceAccountShareUser": {
+        "type": "object",
+        "properties": {
+          "Role": {
+            "type": "string",
+            "enum": [
+              "Admin"
+            ]
+          },
+          "Permission": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "Admin"
+              ]
+            }
+          },
+          "Kind": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          }
+        }
+      },
+      "ServiceAccountUpdateUserParams": {
+        "type": "object",
+        "properties": {
+          "ProfilePicture": {
+            "type": "object"
+          },
+          "FirstName": {
+            "type": "string"
+          },
+          "Description": {
+            "type": "string"
+          }
+        }
+      },
+      "ServiceAccountList": {
+        "type": "object",
+        "properties": {
+          "Fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "Ids"
+        ]
+      },
+      "UpdateUser": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "PortalCreateUserParams": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "DefaultErrorSchemas": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "args": {
+            "type": "object"
+          },
+          "error_code": {
+            "type": "string"
+          },
+          "en_message": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id",
+          "error_code"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "X-Api-Key": {
+        "type": "apiKey",
+        "name": "X-Api-Key",
+        "in": "header"
+      },
+      "X-Access-Key-Id": {
+        "type": "apiKey",
+        "name": "X-Access-Key-Id",
+        "in": "header"
+      },
+      "X-Access-Key-Secret": {
+        "type": "apiKey",
+        "name": "X-Access-Key-Secret",
+        "in": "header"
+      }
+    },
+    "responses": {
+      "NotAuthorized": {
+        "description": "The client request has not been completed because it lacks valid authentication credentials for the requested resource.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DefaultErrorSchema"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "Resource Requested is not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DefaultErrorSchema"
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "The server understands the request but refuses to authorize it.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DefaultErrorSchema"
+            }
+          }
+        }
+      }
+    }
+  },
+  "info": {
+    "title": "Portal",
+    "version": "4.0.0",
+    "contact": {
+      "email": "admin@kissflow.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://{domain}.kissflow.{region}",
+      "variables": {
+        "domain": {
+          "default": "demo",
+          "description": "Sub-domain to your account"
+        },
+        "region": {
+          "enum": [
+            "com",
+            "eu"
+          ],
+          "default": "com",
+          "description": "Region to your account"
+        }
+      }
+    }
+  ],
+  "tags": [
+    {
+      "name": "Portal",
+      "description": "Everything about your Portal",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "https://kissflow.com"
+      }
+    }
+  ],
+  "openapi": "3.0.3"
+}
