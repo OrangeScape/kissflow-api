@@ -54,11 +54,11 @@
           "401": {
             "$ref": "#/components/responses/NotAuthorized"
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
           "403": {
             "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
           }
         },
         "security": [
@@ -66,26 +66,3128 @@
             "X-Api-Key": []
           },
           {
-            "X-Access-Key-Id": []
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/{process_id}/{instance_id}/{activity_instance_id}/submit": {
+      "post": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you submit a specific item at workflow step in your process.",
+        "summary": "Submit an item",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
+            "name": "process_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Process ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "Your unique <<glossary:Instance ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activity_instance_id",
+            "in": "path",
+            "description": "The <<glossary:Step Instance ID>> is the unique identifier for a particular step, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request submits an item at a specific process workflow step.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "success": {
+                      "type": "string",
+                      "description": "The success message.",
+                      "example": "Submitted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/{process_id}/{instance_id}/{activity_instance_id}/reject": {
+      "post": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you reject a specific item at workflow step in your process.",
+        "summary": "Reject an item",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Process ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "Your unique <<glossary:Instance ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activity_instance_id",
+            "in": "path",
+            "description": "The <<glossary:Step Instance ID>> is the unique identifier for a particular step, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Add your rejection note",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "Note": {
+                    "type": "string",
+                    "example": "Need a Reject Note"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request rejects an item at a specific process workflow step.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "Success": {
+                      "type": "string",
+                      "description": "The success message.",
+                      "example": "Rejected successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/{process_id}/{instance_id}/{activity_instance_id}": {
+      "get": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you retrieve the details of an item at a specific workflow step of your Kissflow process.",
+        "summary": "Get item details at workflow step",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Process ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "Your unique <<glossary:Instance ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activity_instance_id",
+            "in": "path",
+            "description": "Your unique <<glossary:Step Instance ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request retrieves the item details at a specific workflow step in your process.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetItem"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/{process_id}/{instance_id}/progress": {
+      "get": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you retrieve the progress of a specific item in your process.",
+        "summary": "Get progress details",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Process ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "Your unique <<glossary:Instance ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request retrieves the progress details of a specific item in your process.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Process"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/{process_id}/{instance_id}/{activity_instance_id}/{field_id}/attachment": {
+      "post": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you upload an attachment file to your process' form field. You can add an attachment in the following file formats - .pdf, .doc, .ppt, .xls, .jpg, .jpeg, .jpe, .png, .gif, or .mp4.",
+        "summary": "Add attachment to form field",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "The <<glossary:Process ID>> is a unique identifier for each process, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activity_instance_id",
+            "in": "path",
+            "description": "The <<glossary:Step Instance ID>> is the unique identifier for a particular step, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "The unique identifier assigned to each field of your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request successfully adds a new attachment to your process form field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDictOfAInstance"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/{process_id}/{instance_id}/{activity_instance_id}/{table_id}/{row_id}/{field_id}/attachment": {
+      "post": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you upload attachment files to a table in your process form. You can add an attachment in the following file formats - .pdf, .doc, .ppt, .xls, .jpg, .jpeg, .jpe, .png, .gif, or .mp4.",
+        "summary": "Add attachment to table",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "The <<glossary:Process ID>> is a unique identifier for each process, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activity_instance_id",
+            "in": "path",
+            "description": "The <<glossary:Step Instance ID>> is the unique identifier for a particular step, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "table_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "row_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each row of a table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each column of a table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request successfully adds new attachments to a table in your process form.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDictOfAInstance"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/{process_id}/{instance_id}/{activity_instance_id}/{field_id}/image": {
+      "post": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you upload an image file to your process' form field. You can add an image in the following file formats - .jpg, .jpeg, .jpe, .png, or .gif. Only the Flow Admin can invoke this API.",
+        "summary": "Add image to form field",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "The <<glossary:Process ID>> is a unique identifier for each process, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activity_instance_id",
+            "in": "path",
+            "description": "The <<glossary:Step Instance ID>> is the unique identifier for a particular step, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "The unique identifier assigned to each field of your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request successfully adds a new image file to your process form field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDictOfAInstance"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you download an image file from your process item's form field.",
+        "summary": "Download image from form field",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "The <<glossary:Process ID>> is a unique identifier for each process, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activity_instance_id",
+            "in": "path",
+            "description": "The <<glossary:Step Instance ID>> is the unique identifier for a particular step, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "The unique identifier assigned to each field of your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request successfully downloads an image file from your process item's form field.",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/{process_id}/{instance_id}/{activity_instance_id}/{table_id}/{row_id}/{field_id}/image": {
+      "post": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you upload an image file to a table in your process form. You can add an image in the following file formats - .jpg, .jpeg, .jpe, .png, or .gif.",
+        "summary": "Add image to table",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "The <<glossary:Process ID>> is a unique identifier for each process, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activity_instance_id",
+            "in": "path",
+            "description": "Activity instance id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "table_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "row_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each row of a table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each column of a table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request successfully adds a new image to a table in your process form.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDictOfAInstance"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you download an image file from a table in your process form.",
+        "summary": "Download image from table",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "The <<glossary:Process ID>> is a unique identifier for each process, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activity_instance_id",
+            "in": "path",
+            "description": "Activity instance id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "table_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "row_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each row of a table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each column of a table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request successfully downloads an image from a table in your process form.",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/{process_id}/{instance_id}/{activity_instance_id}/{field_id}/attachment/{attachment_id}": {
+      "get": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you download a specific attachment file from your process item's form field.",
+        "summary": "Download attachment from form field",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "The <<glossary:Process ID>> is a unique identifier for each process, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activity_instance_id",
+            "in": "path",
+            "description": "The <<glossary:Step Instance ID>> is the unique identifier for a particular step, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "The unique identifier assigned to each field of your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attachment_id",
+            "in": "path",
+            "description": "This is the unique <<glossary:Attachment ID>> of your attached file.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request successfully downloads a specific attachment file from your process item's form field.",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/{process_id}/{instance_id}/{activity_instance_id}/{table_id}/{row_id}/{field_id}/attachment/{attachment_id}": {
+      "get": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you download a specific attachment file from a table in your process item's form field.",
+        "summary": "Download attachment from table field",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "The <<glossary:Process ID>> is a unique identifier for each process, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activity_instance_id",
+            "in": "path",
+            "description": "The <<glossary:Step Instance ID>> is the unique identifier for a particular step, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "table_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "row_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each row of a table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each column of a table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attachment_id",
+            "in": "path",
+            "description": "This is the unique <<glossary:Attachment ID>> of your attached file.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request successfully downloads a specific attachment from a table field of your process form field.",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/{process_id}/myitems": {
+      "get": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you retrieve all the items that you have initiated and participated in your process.",
+        "summary": "Get my item list",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Process ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "This is the specific page number of an item list. The page number can be specified as 1, 2, 3, etc.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The number of items that can be listed in a page. It can be assigned any integer.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request successfully retrieves all the items that you've initiated in your process.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PendingItems"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/{process_id}/pending": {
+      "get": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you retrieve all the items that are awaiting your approval at any specific step in a process.",
+        "summary": "Get my task list",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Process ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "This is the specific page number of an item list. The page number can be specified as 1, 2, 3, etc.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The number of items that can be listed in a page. It can be assigned any integer.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request successfully retrieves all the items that are awaiting your approval at any step in your process.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PendingItems"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/{process_id}/myitems/p{page_number}/{page_size}": {
+      "get": {
+        "deprecated": true,
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you retrieve all the items that you have initiated and participated in your process.",
+        "summary": "Get my item list",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Process ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "path",
+            "description": "This is the specific page number of an item list. The page number can be specified as 1, 2, 3, etc. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "path",
+            "description": "The number of items that can be listed in a page. It can be assigned any integer. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request successfully retrieves all the items that you've initiated in your process.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PendingItems"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/{process_id}/pending/p{page_number}/{page_size}": {
+      "get": {
+        "deprecated": true,
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you retrieve all the items that are awaiting your approval at any specific step in a process.",
+        "summary": "Get my task list",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Process ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "path",
+            "description": "This is the specific page number of an item list. The page number can be specified as 1, 2, 3, etc. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "path",
+            "description": "The number of items that can be listed in a page. It can be assigned any integer. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request successfully retrieves all the items that are awaiting your approval at any step in your process.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PendingItems"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/admin/{process_id}/item": {
+      "get": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you retrieve the list of all items from a Kissflow process. Only Process Admins can call this endpoint.",
+        "summary": "Get the item list",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Process ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "This is the specific page number of an item list. The page number can be specified as 1, 2, 3, etc.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The number of items that can be listed in a page. It can be assigned any integer.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request retrieves the list of all items in your process.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GRIDDataResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/admin/{process_id}/{instance_id}": {
+      "put": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint helps you update the records of a specific item in your process. Only Process Admins can call this endpoint.",
+        "summary": "Update item details",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Process ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "Your unique <<glossary:Instance ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Name of the process. This is a mandatory parameter.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDictOfAInstance"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request updates record of a specific item in your process.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDictOfAInstanceResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you retrieve the details of a specific item from your Kissflow process. Only Process Admins can call this endpoint.",
+        "summary": "Get item details",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Process ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "Your unique <<glossary:Instance ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request retrieves the details of a specific item in your process.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetItem"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you delete a specific item from your process. Only Process Admins can call this endpoint.",
+        "summary": "Delete an item in a process",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Process ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "Your unique <<glossary:Instance ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request deletes the process item successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "Success": {
+                      "type": "string",
+                      "description": "The success message.",
+                      "example": "Deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/admin/{process_id}/{instance_id}/{field_id}/attachment": {
+      "post": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you upload an attachment file to your process' form field. You can add an attachment in the following file formats - .pdf, .doc, .ppt, .xls, .jpg, .jpeg, .jpe, .png, .gif, or .mp4. Only the Flow Admin can invoke this API.",
+        "summary": "Add attachment to form field",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "The <<glossary:Process ID>> is a unique identifier for each process, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "The unique identifier assigned to each field of your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request successfully adds a new attachment to your process form field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDictOfAInstance"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/admin/{process_id}/{instance_id}/{table_id}/{row_id}/{field_id}/attachment": {
+      "post": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you upload attachment files to a table in your process form. You can add an attachment in the following file formats - .pdf, .doc, .ppt, .xls, .jpg, .jpeg, .jpe, .png, .gif, or .mp4. Only Flow Admins can invoke this API.",
+        "summary": "Add attachment to table",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "The <<glossary:Process ID>> is a unique identifier for each process, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "table_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "row_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each row of a table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each column of a table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request successfully adds new attachments to a table in your process form.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDictOfAInstance"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/admin/{process_id}/{instance_id}/{field_id}/image": {
+      "post": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you upload an image file to your process' form field. You can add an image in the following file formats - .jpg, .jpeg, .jpe, .png, or .gif. Only the Flow Admin can invoke this API.",
+        "summary": "Add image to form field",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "The <<glossary:Process ID>> is a unique identifier for each process, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "The unique identifier assigned to each field of your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request successfully adds a new image file to your process form field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDictOfAInstance"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you download an image file from your process' form field. Only the Flow Admin can invoke this API.",
+        "summary": "Flow Admin downloads image",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "The <<glossary:Process ID>> is a unique identifier for each process, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "The unique identifier assigned to each field of your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request successfully downloads an image file from your process form field.",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/admin/{process_id}/{instance_id}/{table_id}/{row_id}/{field_id}/image": {
+      "post": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you upload an image file to a table in your process form. You can add an image in the following file formats - .jpg, .jpeg, .jpe, .png, or .gif. Only Flow Admins can invoke this API.",
+        "summary": "Add image to table",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "The <<glossary:Process ID>> is a unique identifier for each process, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "table_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "row_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each row of a table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each column of a table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request successfully adds a new image to a table in your process form.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDictOfAInstance"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you download an image file from a table in your process form. Only Flow Admins can invoke this API.",
+        "summary": "Flow Admin downloads image from table",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "The <<glossary:Process ID>> is a unique identifier for each process, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "table_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "row_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each row of a table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each column of a table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request successfully downloads an image from a table in your process form.",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/admin/{process_id}/{instance_id}/{field_id}/attachment/{attachment_id}": {
+      "get": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you download a specific attachment file from your process' form field. Only the Flow Admin can invoke this API.",
+        "summary": "Flow Admin downloads attachment",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "The <<glossary:Process ID>> is a unique identifier for each process, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "The unique identifier assigned to each field of your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attachment_id",
+            "in": "path",
+            "description": "This is the unique <<glossary:Attachment ID>> of your attached file.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request successfully downloads a specific attachment file from your process form field.",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/admin/{process_id}/{instance_id}/{table_id}/{row_id}/{field_id}/attachment/{attachment_id}": {
+      "get": {
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you download a specific attachment file from a table in your process form. Only Flow Admins can invoke this API.",
+        "summary": "Flow Admin downloads attachment from table",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "The <<glossary:Process ID>> is a unique identifier for each process, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "table_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "row_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each row of a table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each column of a table in your process form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attachment_id",
+            "in": "path",
+            "description": "This is the unique <<glossary:Attachment ID>> of your attached file.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request successfully downloads a specific attachment from a table in your process form.",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/process/2/{account_id}/admin/{process_id}/item/p{page_number}/{page_size}": {
+      "get": {
+        "deprecated": true,
+        "tags": [
+          "Process"
+        ],
+        "description": "This endpoint lets you retrieve the list of all items from a Kissflow process. Only Process Admins can call this endpoint.",
+        "summary": "Get the item list",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "process_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Process ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "path",
+            "description": "This is the specific page number of an item list. The page number can be specified as 1, 2, 3, etc. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "path",
+            "description": "The number of items that can be listed in a page. It can be assigned any integer. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request retrieves the list of all items in your process.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GRIDDataResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
             "X-Access-Key-Secret": []
           }
         ]
       }
     }
   },
-  "tags": [
-      {
-        "name": "Process",
-        "description": "Create and manage a <<glossary:Process>> in Kissflow using these API endpoints.",
-        "externalDocs": {
-          "description": "Find out more",
-          "url": "https://kissflow.com"
-        }
+  "info": {
+    "title": "Process",
+    "version": "4.0.0",
+    "description": "API around Process functionality",
+    "contact": {
+      "email": "admin@kissflow.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://{domain}.kissflow.{region}",
+      "variables": {
+          "domain": {
+              "default": "demo",
+              "description": "Sub-domain to your account"
+          },
+          "region": {
+              "enum": [
+                "com",
+                "eu"
+              ],
+              "default": "com",
+              "description": "Region to your account"
+          }
       }
+    }
   ],
+  "tags": [
+    {
+      "name": "Process",
+      "description": "Create and manage a <<glossary:Process>> in Kissflow using these API endpoints.",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "https://kissflow.com"
+      }
+    }
+  ],
+  "openapi": "3.0.3",
   "components": {
+    "schemas": {
+      "Field": {
+        "type": "object",
+        "properties": {
+          "Type": {
+            "type": "string"
+          },
+          "IsSystemField": {
+            "type": "boolean"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Id": {
+            "type": "string"
+          }
+        }
+      },
+      "System": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "LookupResponseOfAInstance": {
+        "type": "object",
+        "properties": {
+          "RequestedBy": {
+            "$ref": "#/components/schemas/System"
+          },
+          "PONumber": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "TotalPrice": {
+            "type": "string"
+          }
+        }
+      },
+      "LookupResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LookupResponseOfAInstance"
+            }
+          }
+        }
+      },
+      "BatchComplete": {
+        "type": "object",
+        "properties": {}
+      },
+      "UpdateDictOfAInstance": {
+        "type": "object",
+        "properties": {
+          "RequestedBy": {
+            "$ref": "#/components/schemas/System"
+          },
+          "PONumber": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "TotalPrice": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name",
+          "_id"
+        ]
+      },
+      "Reassign": {
+        "type": "object",
+        "properties": {
+          "Note": {
+            "type": "string"
+          },
+          "ReassignedTo": {
+            "$ref": "#/components/schemas/System"
+          },
+          "ReassignedFrom": {
+            "$ref": "#/components/schemas/System"
+          }
+        }
+      },
+      "UpdateDictOfAInstanceResponse": {
+        "type": "object",
+        "properties": {
+          "_modified_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "RequestedBy": {
+            "$ref": "#/components/schemas/System"
+          },
+          "PONumber": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "TotalPrice": {
+            "type": "string"
+          },
+          "_modified_by": {
+            "$ref": "#/components/schemas/System"
+          }
+        },
+        "required": [
+          "Name",
+          "_id"
+        ]
+      },
+      "BatchUpdateResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UpdateDictOfAInstanceResponse"
+            }
+          }
+        }
+      },
+      "BatchUpdate": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UpdateDictOfAInstance"
+            }
+          }
+        }
+      },
+      "GRIDDataResponse": {
+        "type": "object",
+        "properties": {
+          "Table_TableName": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BatchUpdate"
+            }
+          },
+          "Filter": {
+            "type": "object"
+          },
+          "Columns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Field"
+            }
+          }
+        }
+      },
+      "Step": {
+        "type": "object",
+        "properties": {
+          "Type": {
+            "type": "string"
+          }
+        }
+      },
+      "PendingItems": {
+        "type": "object",
+        "properties": {
+          "CardFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Field"
+            }
+          },
+          "Data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Step"
+            }
+          },
+          "Columns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Field"
+            }
+          }
+        }
+      },
+      "AdminTaskCount": {
+        "type": "object",
+        "properties": {
+          "Completed": {
+            "type": "integer"
+          },
+          "Rejected": {
+            "type": "integer"
+          },
+          "Deactivated": {
+            "type": "integer"
+          },
+          "InProgress": {
+            "type": "integer"
+          },
+          "Withdrawn": {
+            "type": "integer"
+          }
+        }
+      },
+      "Aggregations": {
+        "type": "object",
+        "properties": {
+          "BLANK": {
+            "type": "integer"
+          },
+          "NONBLANK": {
+            "type": "integer"
+          },
+          "MIN": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "COUNT": {
+            "type": "integer"
+          },
+          "SUM": {
+            "type": "integer"
+          },
+          "MAX": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "AggregationDict": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Aggregations"
+            }
+          },
+          "_created_at": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Aggregations"
+            }
+          },
+          "_current_step": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Aggregations"
+            }
+          },
+          "_progress": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Aggregations"
+            }
+          }
+        }
+      },
+      "Count": {
+        "type": "object",
+        "properties": {
+          "Count": {
+            "type": "integer"
+          }
+        }
+      },
+      "GetItem": {
+        "type": "object",
+        "properties": {
+          "_current_assigned_to": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/System"
+            }
+          },
+          "Name": {
+            "type": "string"
+          },
+          "_current_step": {
+            "type": "string"
+          },
+          "_progress": {
+            "type": "integer"
+          }
+        }
+      },
+      "QueryDefinitionIntermediateDataStructure": {
+        "type": "object",
+        "properties": {}
+      },
+      "TaskCount": {
+        "type": "object",
+        "properties": {
+          "Rejected": {
+            "type": "integer"
+          },
+          "Completed": {
+            "type": "integer"
+          },
+          "InProgress": {
+            "type": "integer"
+          },
+          "Draft": {
+            "type": "integer"
+          },
+          "Withdrawn": {
+            "type": "integer"
+          }
+        }
+      },
+      "PendingTaskCount": {
+        "type": "object",
+        "properties": {
+          "Count": {
+            "type": "integer"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "StepName": {
+            "type": "string"
+          }
+        }
+      },
+      "SubmitResponse": {
+        "type": "object",
+        "properties": {
+          "InstanceId": {
+            "type": "string"
+          },
+          "ActivityInstanceId": {
+            "type": "string"
+          }
+        }
+      },
+      "Process": {
+        "type": "object",
+        "properties": {
+          "steps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Step"
+            }
+          }
+        }
+      },
+      "SendBackStep": {
+        "type": "object",
+        "properties": {
+          "_activity_id": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          }
+        }
+      },
+      "SendBackPath": {
+        "type": "object",
+        "properties": {
+          "_activity_id": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "SendBackPath": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SendBackStep"
+            }
+          }
+        }
+      },
+      "SendBack": {
+        "type": "object",
+        "properties": {
+          "_activity_id": {
+            "type": "string"
+          },
+          "Note": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          }
+        }
+      },
+      "DefaultErrorSchemas": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "args": {
+            "type": "object"
+          },
+          "error_code": {
+            "type": "string"
+          },
+          "en_message": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id",
+          "error_code"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "X-Api-Key": {
+        "type": "apiKey",
+        "name": "X-Api-Key",
+        "in": "header"
+      },
+      "X-Access-Key-Id": {
+        "type": "apiKey",
+        "name": "X-Access-Key-Id",
+        "in": "header"
+      },
+      "X-Access-Key-Secret": {
+        "type": "apiKey",
+        "name": "X-Access-Key-Secret",
+        "in": "header"
+      }
+    },
     "responses": {
       "NotAuthorized": {
         "description": "The client request has not been completed because it lacks valid authentication credentials for the requested resource.",
@@ -117,89 +3219,6 @@
           }
         }
       }
-    },
-    "schemas": {
-      "DefaultStatus": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "status"
-        ]
-      },
-      "DefaultErrorSchema": {
-        "type": "object",
-        "properties": {
-          "_id": {
-            "type": "string"
-          },
-          "args": {
-            "type": "object"
-          },
-          "error_code": {
-            "type": "string"
-          },
-          "en_message": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "_id",
-          "error_code"
-        ]
-      }
-    },
-    "securitySchemes": {
-      "X-Api-Key": {
-          "type": "apiKey",
-          "name": "X-Api-Key",
-          "in": "header"
-      },
-      "X-Access-Key-Id": {
-          "type": "apiKey",
-          "name": "X-Access-Key-Id",
-          "in": "header"
-      },
-      "X-Access-Key-Secret": {
-          "type": "apiKey",
-          "name": "X-Access-Key-Secret",
-          "in": "header"
-      }
-  }},
-  "servers": [
-    {
-      "url": "https://{domain}.kissflow.{region}",
-      "variables": {
-          "domain": {
-              "default": "demo",
-              "description": "Sub-domain to your account"
-          },
-          "region": {
-              "enum": [
-                "com",
-                "eu"
-              ],
-              "default": "com",
-              "description": "Region to your account"
-          }
-      }
     }
-  ],
-  "info": {
-    "title": "Process",
-    "version": "4.0.0",
-    "contact": {
-      "email": "admin@kissflow.com"
-    }
-  },
-  "openapi": "3.0.0"
+  }
 }
