@@ -1,6 +1,3129 @@
 {
   "paths": {
-    
+    "/case/2/{account_id}/{case_id}/{item_id}": {
+      "get": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you retrieve all the details of an item.",
+        "summary": "Retrieve all item details",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Case ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "Your unique <<glossary:Item ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request retrieves all the details of a specific item.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetItem"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you delete an item from the case system.",
+        "summary": "Delete an Item",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "ID of account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "ID of a case system",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "ID of the item to be deleted",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete a specific item",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "success": {
+                      "type": "string",
+                      "example": "success"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/{item_id}/{status_id}": {
+      "post": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you update the custom form fields in a case system.",
+        "summary": "Update custom form fields",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "ID of account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "ID of a case system",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "ID of the item",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status_id",
+            "in": "path",
+            "description": "ID of the current status",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Payload to update custom form fields",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDictOfInstance"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request updates the status of custom form fields in a case system.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDictOfInstanceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The parameters specified in the payload are invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "description": "The value specified for one of the custom form fields is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/{item_id}/{status_id}/move": {
+      "post": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you change the status of an item in the case system.",
+        "summary": "Update the status of an item",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Case ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "ID of the item",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status_id",
+            "in": "path",
+            "description": "ID of the current status",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Payload to update the status",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MoveItemInstanceDict"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request changes the status of an item in the case system.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDictOfInstanceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The parameters specified in the payload are invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "description": "The value specified is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/{item_id}/{status_id}/reassign": {
+      "post": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you change the assignee of an item in the case system.",
+        "summary": "Update the assignee for an item",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Case ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "ID of the item",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status_id",
+            "in": "path",
+            "description": "ID of the current status",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Payload to update the assignee",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignItemInstanceDict"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request changes the assignee of an item in the case system.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDictOfInstanceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The parameters specified in the payload are invalid. The value specified for Assignee is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "description": "The value specified is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/{item_id}/{status_id}/DueDate": {
+      "put": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you update the due date (date and time) for an item in the case system.",
+        "summary": "Update the due date and time for an item",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "ID of account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "ID of a case system",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "ID of the item",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status_id",
+            "in": "path",
+            "description": "ID of the current status",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Payload to update due date (date and time)",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DueDateUpdateDict"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request updates the due date (date and time) of an item in the case system.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDictOfInstanceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The parameters specified in the payload are invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "description": "The value specified is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/{item_id}/{status_id}/_priority_id": {
+      "put": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you update the priority for an item in the case system.",
+        "summary": "Update the priority for an item",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "ID of account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "ID of a case system",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "ID of the item",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status_id",
+            "in": "path",
+            "description": "ID of the current status",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Payload to update the priority",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PriorityUpdateDict"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request updates the priority of an item in the case system.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDictOfInstanceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The parameters specified in the payload are invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "description": "The value specified is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/{item_id}/{status_id}/Requester": {
+      "put": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you update the requester for an item in the case system.",
+        "summary": "Update the requester for an item",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "ID of account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "ID of a case system",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "ID of the item",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status_id",
+            "in": "path",
+            "description": "ID of the current status",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Payload to update the requester",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequesterUpdateDict"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request updates the requester of an item in the case system.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDictOfInstanceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The parameters specified in the payload are invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "description": "The value specified is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/{item_id}/add/watchers": {
+      "post": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you add watcher(s) to a case.",
+        "summary": "Add watcher(s) to a case",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Case ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "System generated ID of this case.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Payload to add watcher(s) to a case.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WatchersRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Watcher(s) added successfully to your case.",
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "example": "success"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The parameters specified in the payload to add watchers to a case are invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "406": {
+            "description": "The maximum number of watchers that can be assigned to your case has been reached.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/{item_id}/watchers": {
+      "post": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you retrieve the list of watchers for a case in your case system.",
+        "summary": "Get list of watchers for a case",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Case ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "System generated ID of this case.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The list of watchers for your case was retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WatchersRequest"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The parameters specified in the payload to retrieve watchers of a case are invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/{item_id}/remove/watchers": {
+      "post": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you remove watcher(s) from a case.",
+        "summary": "Remove watcher(s) from a case",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Case ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "System generated ID of this case.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Payload to remove watcher(s) from a case.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WatchersRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The watcher(s) were successfully removed from your case.",
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "example": "success"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The parameters specified in the payload to remove watchers from a case are invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/{item_id}/transition": {
+      "get": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you retrieve the status transitions of an item in a case system.",
+        "summary": "Retrieve status transitions of an item",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "ID of account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "ID of a case system",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "ID of an item",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request lists the status transitions of an item in a case system.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransitionResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/{item_id}/activity": {
+      "get": {
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Get the activities of a item",
+        "description": "This endpoint lets you retrieve activities of a specific item in your case.",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "Your unique Kissflow <<glossary:Case ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "Your Kissflow Case's unique <<glossary:Item ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request successfully retrieves activities of a specific item.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ActivityResponse"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/{view_type}/items": {
+      "post": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you retrieve the list of items in a view based on a filter.",
+        "summary": "Retrieve the list of items in a view",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "ID of account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "ID of a case system",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "view_id",
+            "in": "path",
+            "description": "ID of the view that contains all the filter conditions",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Payload to display specific columns and apply selected filter conditions",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFilter"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request retrieves the list of item in a view after a filter is applied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListItemResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The specified view is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/count": {
+      "post": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets your retrieve the number of items in a view based on a filter.",
+        "summary": "Retrieve the number of items in a view",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "ID of account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "ID of a case system",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "view_id",
+            "in": "path",
+            "description": "ID of the view that contains all the filter conditions",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Payload to display specific columns and apply selected filter conditions",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFilter"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Get count of items in a view after a filter is applied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CountResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The specified view is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/batch/reassign": {
+      "post": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you bulk-update assignee for items.",
+        "summary": "Bulk-update assignee for items",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "ID of account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "ID of a case system",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Payload to bulk-update assignee for items",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchAssign"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Perform bulk-update of assignee for items",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The value for AssignedTo is missing in the payload.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/batch/move": {
+      "post": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you bulk-update status for items.",
+        "summary": "Bulk-update status for items",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "ID of account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "ID of a case system",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Payload to bulk-update status for items",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchMove"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Perform bulk-update of status for items.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The value for_status_id is missing in the payload.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/batch/_priority_id": {
+      "post": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you bulk-update priority for items.",
+        "summary": "Bulk-update priority for items",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "ID of account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "ID of a case system",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Payload to bulk-update priority",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchUpdatePriority"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Perform bulk-update of priority for items.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The value for_priority_id is missing in the payload.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/batch/delete": {
+      "post": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you bulk-delete items from the case system.",
+        "summary": "Bulk-delete items",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "ID of account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "ID of a case system",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Payload to bulk-delete items",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MultipleItem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Perform bulk-deletion of items.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/{item_id}/{field_id}/attachment": {
+      "post": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you add an attachment to an attachment field in the case form. The following file formats are supported - pdf, .doc, .ppt, .xls, .jpg, .jpeg, .jpe, .png, .gif, or .mp4.",
+        "summary": "Upload an attachment to an attachment field",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "The <<glossary:Case ID>> is a unique identifier for each case system, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "The unique identifier assigned to each field of your case form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request adds a new attachment to an attachment field in the case form.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDictOfInstance"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/{item_id}/{table_id}/{row_id}/{field_id}/attachment": {
+      "post": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you upload an attachment to an attachment field in a table in the case form. The following file formats are supported - pdf, .doc, .ppt, .xls, .jpg, .jpeg, .jpe, .png, .gif, or .mp4.",
+        "summary": "Upload an attachment to an attachment field in a table table field",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "The <<glossary:Case ID>> is a unique identifier for each case system, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "table_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each table in your case form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "row_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each row of a table in your case form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each column of a table in your case form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request uploads an attachment to an attachent field in a table in the case form.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDictOfInstance"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/{item_id}/{field_id}/image": {
+      "post": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you upload an image file to an image field in the case form. The following file formats are supported - .jpg, .jpeg, .jpe, .png, or .gif.",
+        "summary": "Upload an image file to an image field",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "The <<glossary:Case ID>> is a unique identifier for each case system, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "The unique identifier assigned to each field of your case form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request uploads an image file to an image field in the case form.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDictOfInstance"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you download an image file from an image field in the case form.",
+        "summary": "Download an image file from an image field",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "The <<glossary:Case ID>> is a unique identifier for each case system, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "The unique identifier assigned to each field of your case form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request downloads an image file from an image field in the case form.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/{item_id}/{table_id}/{row_id}/{field_id}/image": {
+      "post": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you upload an image file to an image field in a table in the case form. The following image file formats are supported - .jpg, .jpeg, .jpe, .png, or .gif.",
+        "summary": "Upload an image to an image field in a table",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "The <<glossary:Case ID>> is a unique identifier for each case system, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "table_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each table in your case form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "row_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each row of a table in your case form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each column of a table in your case form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request successfully adds a new image to a table in your case form.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDictOfInstance"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you download an image file from an image field in the case form.",
+        "summary": "Download an image from an image file in a table",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "The <<glossary:Case ID>> is a unique identifier for each case system, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "table_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each table in your case form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "row_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each row of a table in your case form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each column of a table in your case form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request downloads an image file from an image field in the case form.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/{item_id}/{field_id}/attachment/{attachment_id}": {
+      "get": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you download an attachment from an attachment field in the case form.",
+        "summary": "Download an attachment from an attachment field",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "The <<glossary:Case ID>> is a unique identifier for each case system, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "The unique identifier assigned to each field of your case form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attachment_id",
+            "in": "path",
+            "description": "This is the unique <<glossary:Attachment ID>> of your attached file.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request downloads an attachment from an attachment field in the case form.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/{item_id}/{table_id}/{row_id}/{field_id}/attachment/{attachment_id}": {
+      "get": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you download an attachment from an attachment field in the case form.",
+        "summary": "Download an attachment from an attachment field in a table",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "The <<glossary:Case ID>> is a unique identifier for each case system, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "The <<glossary:Instance ID>> is a unique identifier for an individual item, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "table_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each table in your case form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "row_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each row of a table in your case form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "This is a unique identifier assigned to each column of a table in your case form. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attachment_id",
+            "in": "path",
+            "description": "This is the unique <<glossary:Attachment ID>> of your attached file.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request downloads an attachment from an attachment field in a table in the case form.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/fields": {
+      "get": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you retrieve all the fields in a case system.",
+        "summary": "Retrieve all fields",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "ID of account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "ID of a case system",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List all the fields in a case system.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Field"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/lookup/fields": {
+      "get": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint retrieves all fields from another flow using a lookup field.",
+        "summary": "Retrieve all fields using a lookup field",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "ID of account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "ID of the case system whose fields are required",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request lists all the fields from another flow using a lookup field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Field"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/table/{table_id}/fields": {
+      "get": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you retrieve all the fields from a table in another flow while using a lookup field.",
+        "summary": "Retrieve all fields from a table using a lookup field",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "ID of account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "ID of a case system",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "table_id",
+            "in": "path",
+            "description": "ID of the child table whose fields are required",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request lists all the fields from a table in another flow using a lookup field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Field"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/{item_id}/{field_id}/lookup": {
+      "get": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint retrieves a list of items in another flow and populate it in a lookup field added in the case form.",
+        "summary": "Retrieve a list of items and populate them in a lookup field",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "ID of account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "ID of a case system",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "ID of the item that is looking up data",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "ID of the lookup field that will populate data from another flow",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "This is the specific page number of an item list. The page number can be specified as 1, 2, 3, etc.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The number of items that can be listed in a page. It can be assigned any integer.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The search filter string",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request retrieves a list of items in another flow and populates it in a lookup field added in the case form.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LookupResponseOfAInstance"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/{item_id}/{table_id}/{table_instance_id}/{field_id}/lookup": {
+      "get": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint retrieves a list of items from another flow and populates it in a lookup field added in a table in the case form.",
+        "summary": "Retrieve a list of items and populate them in a lookup field in a table",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "ID of account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "ID of a case system",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "ID of the item that is looking up data",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "table_id",
+            "in": "path",
+            "description": "ID of the table that contains the lookup field",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "table_instance_id",
+            "in": "path",
+            "description": "ID of the row in a table that contains the lookup field",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "ID of the lookup field that will populate data from another flow",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "This is the specific page number of an item list. The page number can be specified as 1, 2, 3, etc.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The number of items that can be listed in a page. It can be assigned any integer.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The search filter string",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request retrieves a list of items from another flow and populates it in a lookup field added in a table in the case form.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LookupResponseOfAInstance"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/{item_id}/{field_id}/rlookup": {
+      "get": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint lets you retrieve a list of items external source and populates it in a remote lookup field added in the case form.",
+        "summary": "Retrieve a list of items and populate them in a remote lookup field",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "ID of account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "ID of a case system",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "ID of the item that is looking up data",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "ID of the remote lookup field that will populate data from an external source",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The search filter string",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request retrieves a list of items from an external source and populates it in a remote lookup field added in the case form.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LookupResponseOfAInstance"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/case/2/{account_id}/{case_id}/{item_id}/{table_id}/{table_instance_id}/{field_id}/rlookup": {
+      "get": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint retrieves a list of items from an external source and populates it in a remote lookup field added in a table in the case form.",
+        "summary": "Retrieve a list of items and populate them in a remote lookup field in a table",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "ID of account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "ID of a case system",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "description": "ID of the item that is looking up data",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "table_id",
+            "in": "path",
+            "description": "ID of the table that contains the lookup field",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "table_instance_id",
+            "in": "path",
+            "description": "ID of the row in a table that contains the lookup field",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "ID of the remote lookup field that will populate data from another flow",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request retrieves a list of items from an external source and populates it in a remote lookup field added in a table in the case form.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LookupResponseOfAInstance"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/flow/2/{account_id}/case/{case_id}/report/": {
+      "get": {
+        "tags": [
+          "Case"
+        ],
+        "description": "This endpoint returns a list of reports from the given case system to which the current user has access to.",
+        "summary": "Get report list",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "path",
+            "description": "Your Kissflow <<glossary:Case ID>>. This is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fetched report list successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListReportsResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    }
   },
   "tags": [
     {
@@ -87,37 +3210,38 @@
     },
     "securitySchemes": {
       "X-Api-Key": {
-          "type": "apiKey",
-          "name": "X-Api-Key",
-          "in": "header"
+        "type": "apiKey",
+        "name": "X-Api-Key",
+        "in": "header"
       },
       "X-Access-Key-Id": {
-          "type": "apiKey",
-          "name": "X-Access-Key-Id",
-          "in": "header"
+        "type": "apiKey",
+        "name": "X-Access-Key-Id",
+        "in": "header"
       },
       "X-Access-Key-Secret": {
-          "type": "apiKey",
-          "name": "X-Access-Key-Secret",
-          "in": "header"
+        "type": "apiKey",
+        "name": "X-Access-Key-Secret",
+        "in": "header"
       }
-  }},
+    }
+  },
   "servers": [
     {
       "url": "https://{domain}.kissflow.{region}",
       "variables": {
-          "domain": {
-              "default": "demo",
-              "description": "Sub-domain to your account"
-          },
-          "region": {
-              "enum": [
-                "com",
-                "eu"
-              ],
-              "default": "com",
-              "description": "Region to your account"
-          }
+        "domain": {
+          "default": "demo",
+          "description": "Sub-domain to your account"
+        },
+        "region": {
+          "enum": [
+            "com",
+            "eu"
+          ],
+          "default": "com",
+          "description": "Region to your account"
+        }
       }
     }
   ],
