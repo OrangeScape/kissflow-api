@@ -335,6 +335,15 @@
               "maximum": 50,
               "type": "integer"
             }
+          },
+          {
+            "name": "search_field",
+            "in": "query",
+            "description": "This is the search filter string based on specific field and is an optional parameter.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
