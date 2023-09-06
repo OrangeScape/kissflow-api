@@ -5,7 +5,7 @@
         "tags": [
           "Form"
         ],
-        "description": "This endpoint lets you create a new form record.",
+        "description": "Create a new form record",
         "summary": "Create a new form record",
         "parameters": [
           {
@@ -57,11 +57,11 @@
           "401": {
             "$ref": "#/components/responses/NotAuthorized"
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
           "403": {
             "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
           }
         },
         "security": [
@@ -78,7 +78,7 @@
         "tags": [
           "Form"
         ],
-        "description": "This endpoint lets you delete a specific form record.",
+        "description": "Delete a specific form record",
         "summary": "Delete a specific form record",
         "parameters": [
           {
@@ -107,84 +107,11 @@
           "401": {
             "$ref": "#/components/responses/NotAuthorized"
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          }
-        },
-        "security": [
-          {
-            "X-Api-Key": []
-          },
-          {
-            "X-Access-Key-Id": [],
-            "X-Access-Key-Secret": []
-          }
-        ]
-      },
-      "put": {
-        "tags": [
-          "Form"
-        ],
-        "description": "This endpoint lets you update an existing form record.",
-        "summary": "Update an existing form record",
-        "parameters": [
-          {
-            "name": "account_id",
-            "in": "path",
-            "description": "This is your Kissflow <<glossary:Account ID>>",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "form_id",
-            "in": "path",
-            "description": "The <<glossary:Form ID>> is a unique identifier for each form",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Request payload to update a form record <br /> Name - `Key` column value of the form. It is a unique string that identifies the record you are trying to update in the form. It is a mandatory parameter<br /> Field1 - Value to be updated in the `Field1` column in the form",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "Name": {
-                    "type": "string"
-                  },
-                  "Field1": {
-                    "type": "string"
-                  }
-                },
-                "example": {
-                  "Name": 10,
-                  "Field1": "Blackwidow"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Updated the form record successfully"
-          },
-          "401": {
-            "$ref": "#/components/responses/NotAuthorized"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
           }
         },
         "security": [
@@ -201,7 +128,7 @@
         "tags": [
           "Form"
         ],
-        "description": "This endpoint lets you fetch a specific form record.",
+        "description": "Get an existing form record",
         "summary": "Get an existing form record",
         "parameters": [
           {
@@ -239,11 +166,11 @@
           "401": {
             "$ref": "#/components/responses/NotAuthorized"
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
           "403": {
             "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
           }
         },
         "security": [
@@ -253,9 +180,6 @@
           {
             "X-Access-Key-Id": [],
             "X-Access-Key-Secret": []
-          },
-          {
-
           }
         ]
       }
@@ -265,7 +189,7 @@
         "tags": [
           "Form"
         ],
-        "description": "This endpoint lets you retrieve a specific form's records, including the form's fields and its respective values.",
+        "description": "This endpoint lets you retrieve all the items of a form.",
         "summary": "Get form records",
         "parameters": [
           {
@@ -285,6 +209,42 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "This is the specific page number of an item list and is an optional parameter. The page number can be specified as 1, 2, 3, etc. Default value is 1.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The number of items that can be listed in a page result and is an optional parameter. Default value is 10.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "This is the search filter string, and is an optional parameter.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search_field",
+            "in": "query",
+            "description": "This is the search filter string based on specific field and is an optional parameter.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -301,11 +261,86 @@
           "401": {
             "$ref": "#/components/responses/NotAuthorized"
           },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/form/2/{account_id}/{form_id}/update": {
+      "patch": {
+        "tags": [
+          "Form"
+        ],
+        "description": "Create a new form record or update an existing one",
+        "summary": "Create a new form record or update an existing one",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "form_id",
+            "in": "path",
+            "description": "The <<glossary:Form ID>> is a unique identifier for each form",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request payload to create/update form record <br /> Name - `Key` column value of the form. It is a unique string that identifies the record you are trying to insert/update in the form. It is a mandatory parameter<br /> Field1 - Value to be added/updated in the `Field1` column in the form",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Field1": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "Name": 10,
+                  "Field1": "Blackwidow"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created/updated form successfully"
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
           }
         },
         "security": [
@@ -494,37 +529,38 @@
     },
     "securitySchemes": {
       "X-Api-Key": {
-          "type": "apiKey",
-          "name": "X-Api-Key",
-          "in": "header"
+        "type": "apiKey",
+        "name": "X-Api-Key",
+        "in": "header"
       },
       "X-Access-Key-Id": {
-          "type": "apiKey",
-          "name": "X-Access-Key-Id",
-          "in": "header"
+        "type": "apiKey",
+        "name": "X-Access-Key-Id",
+        "in": "header"
       },
       "X-Access-Key-Secret": {
-          "type": "apiKey",
-          "name": "X-Access-Key-Secret",
-          "in": "header"
+        "type": "apiKey",
+        "name": "X-Access-Key-Secret",
+        "in": "header"
       }
-  }},
+    }
+  },
   "servers": [
     {
       "url": "https://{domain}.kissflow.{region}",
       "variables": {
-          "domain": {
-              "default": "demo",
-              "description": "Sub-domain to your account"
-          },
-          "region": {
-              "enum": [
-                "com",
-                "eu"
-              ],
-              "default": "com",
-              "description": "Region to your account"
-          }
+        "domain": {
+          "default": "demo",
+          "description": "Sub-domain to your account"
+        },
+        "region": {
+          "enum": [
+            "com",
+            "eu"
+          ],
+          "default": "com",
+          "description": "Region to your account"
+        }
       }
     }
   ],
