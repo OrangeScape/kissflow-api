@@ -1547,81 +1547,6 @@
         ]
       }
     },
-    "/process/2/{account_id}/admin/{process_id}/item": {
-      "get": {
-        "tags": [
-          "Process"
-        ],
-        "description": "This endpoint lets you retrieve the list of all items from a Kissflow process. Only Process Admins can call this endpoint.",
-        "summary": "Get the item list",
-        "parameters": [
-          {
-            "name": "account_id",
-            "in": "path",
-            "description": "Your Kissflow <<glossary:Account ID>>. This is a mandatory parameter.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "process_id",
-            "in": "path",
-            "description": "Your Kissflow <<glossary:Process ID>>. This is a mandatory parameter.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "page_number",
-            "in": "query",
-            "description": "This is the specific page number of an item list. The page number can be specified as 1, 2, 3, etc.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "page_size",
-            "in": "query",
-            "description": "The number of items that can be listed in a page. It can be assigned any integer.",
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "This request retrieves the list of all items in your process.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GRIDDataResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/NotAuthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        },
-        "security": [
-          {
-            "X-Api-Key": []
-          },
-          {
-            "X-Access-Key-Id": [],
-            "X-Access-Key-Secret": []
-          }
-        ]
-      }
-    },
     "/process/2/{account_id}/admin/{process_id}/{instance_id}": {
       "put": {
         "tags": [
@@ -2689,32 +2614,13 @@
     }
   },
   "info": {
-    "title": "Process",
-    "version": "4.0.0",
+    "title": "Process Apis ",
+    "version": "2.0.0",
     "description": "API around Process functionality",
     "contact": {
-      "email": "admin@kissflow.com"
+      "email": "engg@kissflow.com"
     }
   },
-  "servers": [
-    {
-      "url": "https://{domain}.kissflow.{region}",
-      "variables": {
-          "domain": {
-              "default": "demo",
-              "description": "Sub-domain to your account"
-          },
-          "region": {
-              "enum": [
-                "com",
-                "eu"
-              ],
-              "default": "com",
-              "description": "Region to your account"
-          }
-      }
-    }
-  ],
   "tags": [
     {
       "name": "Process",
@@ -2731,16 +2637,16 @@
       "Field": {
         "type": "object",
         "properties": {
-          "Type": {
+          "Id": {
+            "type": "string"
+          },
+          "Name": {
             "type": "string"
           },
           "IsSystemField": {
             "type": "boolean"
           },
-          "Name": {
-            "type": "string"
-          },
-          "Id": {
+          "Type": {
             "type": "string"
           }
         }
@@ -2748,10 +2654,10 @@
       "System": {
         "type": "object",
         "properties": {
-          "Name": {
+          "_id": {
             "type": "string"
           },
-          "_id": {
+          "Name": {
             "type": "string"
           }
         },
@@ -2765,16 +2671,16 @@
           "RequestedBy": {
             "$ref": "#/components/schemas/System"
           },
-          "PONumber": {
+          "_id": {
             "type": "string"
           },
           "Name": {
             "type": "string"
           },
-          "_id": {
+          "TotalPrice": {
             "type": "string"
           },
-          "TotalPrice": {
+          "PONumber": {
             "type": "string"
           }
         }
@@ -2800,16 +2706,16 @@
           "RequestedBy": {
             "$ref": "#/components/schemas/System"
           },
-          "PONumber": {
+          "_id": {
             "type": "string"
           },
           "Name": {
             "type": "string"
           },
-          "_id": {
+          "TotalPrice": {
             "type": "string"
           },
-          "TotalPrice": {
+          "PONumber": {
             "type": "string"
           }
         },
@@ -2821,11 +2727,11 @@
       "Reassign": {
         "type": "object",
         "properties": {
-          "Note": {
-            "type": "string"
-          },
           "ReassignedTo": {
             "$ref": "#/components/schemas/System"
+          },
+          "Note": {
+            "type": "string"
           },
           "ReassignedFrom": {
             "$ref": "#/components/schemas/System"
@@ -2835,27 +2741,27 @@
       "UpdateDictOfAInstanceResponse": {
         "type": "object",
         "properties": {
-          "_modified_at": {
-            "type": "string",
-            "format": "date-time"
-          },
           "RequestedBy": {
             "$ref": "#/components/schemas/System"
           },
-          "PONumber": {
+          "_modified_by": {
+            "$ref": "#/components/schemas/System"
+          },
+          "_id": {
             "type": "string"
           },
           "Name": {
             "type": "string"
           },
-          "_id": {
-            "type": "string"
+          "_modified_at": {
+            "type": "string",
+            "format": "date-time"
           },
           "TotalPrice": {
             "type": "string"
           },
-          "_modified_by": {
-            "$ref": "#/components/schemas/System"
+          "PONumber": {
+            "type": "string"
           }
         },
         "required": [
@@ -2916,16 +2822,16 @@
       "PendingItems": {
         "type": "object",
         "properties": {
-          "CardFields": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Field"
-            }
-          },
           "Data": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Step"
+            }
+          },
+          "CardFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Field"
             }
           },
           "Columns": {
@@ -2939,19 +2845,19 @@
       "AdminTaskCount": {
         "type": "object",
         "properties": {
-          "Completed": {
-            "type": "integer"
-          },
-          "Rejected": {
+          "InProgress": {
             "type": "integer"
           },
           "Deactivated": {
             "type": "integer"
           },
-          "InProgress": {
+          "Completed": {
             "type": "integer"
           },
           "Withdrawn": {
+            "type": "integer"
+          },
+          "Rejected": {
             "type": "integer"
           }
         }
@@ -2959,20 +2865,20 @@
       "Aggregations": {
         "type": "object",
         "properties": {
-          "BLANK": {
+          "MIN": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "SUM": {
             "type": "integer"
           },
           "NONBLANK": {
             "type": "integer"
           },
-          "MIN": {
-            "type": "string",
-            "format": "date-time"
-          },
           "COUNT": {
             "type": "integer"
           },
-          "SUM": {
+          "BLANK": {
             "type": "integer"
           },
           "MAX": {
@@ -2984,13 +2890,13 @@
       "AggregationDict": {
         "type": "object",
         "properties": {
-          "Name": {
+          "_created_at": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Aggregations"
             }
           },
-          "_created_at": {
+          "Name": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Aggregations"
@@ -3045,19 +2951,19 @@
       "TaskCount": {
         "type": "object",
         "properties": {
-          "Rejected": {
-            "type": "integer"
-          },
-          "Completed": {
-            "type": "integer"
-          },
           "InProgress": {
             "type": "integer"
           },
           "Draft": {
             "type": "integer"
           },
+          "Completed": {
+            "type": "integer"
+          },
           "Withdrawn": {
+            "type": "integer"
+          },
+          "Rejected": {
             "type": "integer"
           }
         }
@@ -3065,11 +2971,11 @@
       "PendingTaskCount": {
         "type": "object",
         "properties": {
-          "Count": {
-            "type": "integer"
-          },
           "_id": {
             "type": "string"
+          },
+          "Count": {
+            "type": "integer"
           },
           "StepName": {
             "type": "string"
@@ -3101,13 +3007,13 @@
       "SendBackStep": {
         "type": "object",
         "properties": {
-          "_activity_id": {
+          "_id": {
             "type": "string"
           },
           "Name": {
             "type": "string"
           },
-          "_id": {
+          "_activity_id": {
             "type": "string"
           }
         }
@@ -3115,13 +3021,10 @@
       "SendBackPath": {
         "type": "object",
         "properties": {
-          "_activity_id": {
+          "_id": {
             "type": "string"
           },
           "Name": {
-            "type": "string"
-          },
-          "_id": {
             "type": "string"
           },
           "SendBackPath": {
@@ -3129,24 +3032,27 @@
             "items": {
               "$ref": "#/components/schemas/SendBackStep"
             }
+          },
+          "_activity_id": {
+            "type": "string"
           }
         }
       },
       "SendBack": {
         "type": "object",
         "properties": {
-          "_activity_id": {
+          "_id": {
             "type": "string"
           },
           "Note": {
             "type": "string"
           },
-          "_id": {
+          "_activity_id": {
             "type": "string"
           }
         }
       },
-      "DefaultErrorSchemas": {
+      "DefaultErrorSchema": {
         "type": "object",
         "properties": {
           "_id": {
