@@ -60,75 +60,6 @@
           }
         ]
       },
-      "delete": {
-        "tags": [
-          "Dataset"
-        ],
-        "summary": "Delete a specific dataset record",
-        "description": "This endpoint lets you delete a specific dataset record.<br /> Please make a note of the following request payload details to delete a dataset record.<br /> Name - `Key` column value of the dataset. It is a unique string that identifies the record you are trying to delete in the dataset. It is a mandatory parameter<br />",
-        "parameters": [
-          {
-            "name": "account_id",
-            "in": "path",
-            "description": "This is your Kissflow <<glossary:Account ID>>",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "dataset_id",
-            "in": "path",
-            "description": "The <<glossary:Dataset ID>> is a unique identifier for each dataset",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Request payload to delete a specific dataset record <br /> Name - `Key` column value of the dataset. It is a unique string that identifies the record you are trying to delete in the dataset. It is a mandatory parameter<br />",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "Name": {
-                    "type": "string"
-                  }
-                },
-                "example": {
-                  "Name": "Blackwidow"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Deleted the dataset record successfully"
-          },
-          "401": {
-            "$ref": "#/components/responses/NotAuthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        },
-        "security": [
-          {
-            "X-Api-Key": []
-          },
-          {
-            "X-Access-Key-Id": [],
-            "X-Access-Key-Secret": []
-          }
-        ]
-      },
       "put": {
         "tags": [
           "Dataset"
@@ -256,6 +187,67 @@
         "responses": {
           "200": {
             "description": "Added the dataset record successfully"
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/dataset/2/{account_id}/{dataset_id}/{instance_id}": {
+      "delete": {
+        "tags": [
+          "Dataset"
+        ],
+        "summary": "Delete a specific dataset record",
+        "description": "This endpoint lets you delete a specific dataset record.<br /> Please make a note of the following request payload details to delete a dataset record.<br /> Name - `Key` column value of the dataset. It is a unique string that identifies the record you are trying to delete in the dataset. It is a mandatory parameter<br />",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "description": "The <<glossary:Dataset ID>> is a unique identifier for each dataset",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "description": "ID of Record",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted the dataset record successfully"
           },
           "401": {
             "$ref": "#/components/responses/NotAuthorized"
@@ -680,21 +672,21 @@
           "Id": {
             "type": "string"
           },
-          "IsSystemField": {
-            "type": "boolean"
-          },
           "Name": {
             "type": "string"
+          },
+          "IsSystemField": {
+            "type": "boolean"
           }
         }
       },
       "System": {
         "type": "object",
         "properties": {
-          "Name": {
+          "_id": {
             "type": "string"
           },
-          "_id": {
+          "Name": {
             "type": "string"
           }
         },
@@ -705,19 +697,19 @@
       "LookupResponseOfAInstance": {
         "type": "object",
         "properties": {
-          "RequestedBy": {
-            "$ref": "#/components/schemas/System"
-          },
           "TotalPrice": {
             "type": "string"
+          },
+          "PONumber": {
+            "type": "string"
+          },
+          "RequestedBy": {
+            "$ref": "#/components/schemas/System"
           },
           "_id": {
             "type": "string"
           },
           "Name": {
-            "type": "string"
-          },
-          "PONumber": {
             "type": "string"
           }
         }
@@ -736,19 +728,19 @@
       "UpdateDictOfAInstance": {
         "type": "object",
         "properties": {
-          "RequestedBy": {
-            "$ref": "#/components/schemas/System"
-          },
           "TotalPrice": {
             "type": "string"
+          },
+          "PONumber": {
+            "type": "string"
+          },
+          "RequestedBy": {
+            "$ref": "#/components/schemas/System"
           },
           "_id": {
             "type": "string"
           },
           "Name": {
-            "type": "string"
-          },
-          "PONumber": {
             "type": "string"
           }
         },
@@ -760,27 +752,27 @@
       "UpdateDictOfAInstanceResponse": {
         "type": "object",
         "properties": {
-          "RequestedBy": {
-            "$ref": "#/components/schemas/System"
-          },
           "TotalPrice": {
             "type": "string"
           },
-          "_id": {
-            "type": "string"
-          },
-          "_modified_by": {
-            "$ref": "#/components/schemas/System"
-          },
-          "Name": {
+          "PONumber": {
             "type": "string"
           },
           "_modified_at": {
             "type": "string",
             "format": "date-time"
           },
-          "PONumber": {
+          "RequestedBy": {
+            "$ref": "#/components/schemas/System"
+          },
+          "_id": {
             "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "_modified_by": {
+            "$ref": "#/components/schemas/System"
           }
         },
         "required": [
@@ -813,6 +805,12 @@
       "GRIDDataResponse": {
         "type": "object",
         "properties": {
+          "Columns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Field"
+            }
+          },
           "Filter": {
             "type": "object"
           },
@@ -820,12 +818,6 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/BatchUpdate"
-            }
-          },
-          "Columns": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Field"
             }
           }
         }
@@ -843,6 +835,30 @@
         "properties": {}
       },
       "DefaultErrorSchema": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "error_code": {
+            "type": "string"
+          },
+          "en_message": {
+            "type": "string"
+          },
+          "args": {
+            "type": "object"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id",
+          "error_code"
+        ]
+      },
+      "DefaultErrorSchemas": {
         "type": "object",
         "properties": {
           "_id": {
