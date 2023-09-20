@@ -47,14 +47,14 @@
               }
             }
           },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
           "401": {
             "$ref": "#/components/responses/NotAuthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
           }
         },
         "security": [
@@ -118,14 +118,14 @@
               }
             }
           },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
           "401": {
             "$ref": "#/components/responses/NotAuthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
           }
         },
         "security": [
@@ -206,8 +206,21 @@
               }
             }
           },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
           "400": {
             "description": "The parameters specified in the payload are invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "The value specified for one of the custom form fields is invalid.",
             "content": {
               "application/json": {
                 "schema": {
@@ -221,19 +234,6 @@
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "500": {
-            "description": "The value specified for one of the custom form fields is invalid.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrorSchema"
-                }
-              }
-            }
           }
         },
         "security": [
@@ -314,8 +314,21 @@
               }
             }
           },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
           "400": {
             "description": "The parameters specified in the payload are invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "The value specified is invalid.",
             "content": {
               "application/json": {
                 "schema": {
@@ -329,19 +342,6 @@
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "500": {
-            "description": "The value specified is invalid.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrorSchema"
-                }
-              }
-            }
           }
         },
         "security": [
@@ -422,8 +422,21 @@
               }
             }
           },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
           "400": {
             "description": "The parameters specified in the payload are invalid. The value specified for Assignee is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "The value specified is invalid.",
             "content": {
               "application/json": {
                 "schema": {
@@ -437,19 +450,6 @@
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "500": {
-            "description": "The value specified is invalid.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrorSchema"
-                }
-              }
-            }
           }
         },
         "security": [
@@ -530,8 +530,21 @@
               }
             }
           },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
           "400": {
             "description": "The parameters specified in the payload are invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "The value specified is invalid.",
             "content": {
               "application/json": {
                 "schema": {
@@ -545,19 +558,6 @@
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "500": {
-            "description": "The value specified is invalid.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrorSchema"
-                }
-              }
-            }
           }
         },
         "security": [
@@ -638,8 +638,21 @@
               }
             }
           },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
           "400": {
             "description": "The parameters specified in the payload are invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "The value specified is invalid.",
             "content": {
               "application/json": {
                 "schema": {
@@ -653,19 +666,6 @@
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "500": {
-            "description": "The value specified is invalid.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrorSchema"
-                }
-              }
-            }
           }
         },
         "security": [
@@ -746,8 +746,21 @@
               }
             }
           },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
           "400": {
             "description": "The parameters specified in the payload are invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "The value specified is invalid.",
             "content": {
               "application/json": {
                 "schema": {
@@ -761,19 +774,6 @@
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "500": {
-            "description": "The value specified is invalid.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrorSchema"
-                }
-              }
-            }
           }
         },
         "security": [
@@ -837,12 +837,14 @@
         "responses": {
           "200": {
             "description": "Watcher(s) added successfully to your case.",
-            "application/json": {
-              "schema": {
-                "properties": {
-                  "status": {
-                    "type": "string",
-                    "example": "success"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    }
                   }
                 }
               }
@@ -857,9 +859,6 @@
                 }
               }
             }
-          },
-          "401": {
-            "$ref": "#/components/responses/NotAuthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -876,6 +875,9 @@
                 }
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
           }
         },
         "security": [
@@ -946,14 +948,14 @@
               }
             }
           },
-          "401": {
-            "$ref": "#/components/responses/NotAuthorized"
-          },
           "403": {
             "$ref": "#/components/responses/Forbidden"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
           }
         },
         "security": [
@@ -1017,12 +1019,14 @@
         "responses": {
           "200": {
             "description": "The watcher(s) were successfully removed from your case.",
-            "application/json": {
-              "schema": {
-                "properties": {
-                  "status": {
-                    "type": "string",
-                    "example": "success"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    }
                   }
                 }
               }
@@ -1038,14 +1042,14 @@
               }
             }
           },
-          "401": {
-            "$ref": "#/components/responses/NotAuthorized"
-          },
           "403": {
             "$ref": "#/components/responses/Forbidden"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
           }
         },
         "security": [
@@ -1106,14 +1110,14 @@
               }
             }
           },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
           "401": {
             "$ref": "#/components/responses/NotAuthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
           }
         },
         "security": [
@@ -1177,113 +1181,14 @@
               }
             }
           },
-          "401": {
-            "$ref": "#/components/responses/NotAuthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
           "404": {
             "$ref": "#/components/responses/NotFound"
-          }
-        },
-        "security": [
-          {
-            "X-Api-Key": []
-          },
-          {
-            "X-Access-Key-Id": [],
-            "X-Access-Key-Secret": []
-          }
-        ]
-      }
-    },
-    "/case/2/{account_id}/{case_id}/{view_type}/items": {
-      "post": {
-        "tags": [
-          "Case"
-        ],
-        "description": "This endpoint lets you retrieve the list of items in a view based on a filter.",
-        "summary": "Retrieve the list of items in a view",
-        "parameters": [
-          {
-            "name": "account_id",
-            "in": "path",
-            "description": "ID of account",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "case_id",
-            "in": "path",
-            "description": "ID of a case system",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "view_id",
-            "in": "path",
-            "description": "ID of the view that contains all the filter conditions",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Payload to display specific columns and apply selected filter conditions",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateFilter"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "This request retrieves the list of item in a view after a filter is applied.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListItemResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The specified view is invalid.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrorSchema"
-                }
-              }
-            }
           },
           "401": {
             "$ref": "#/components/responses/NotAuthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "500": {
-            "description": "Internal Server Error.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrorSchema"
-                }
-              }
-            }
           }
         },
         "security": [
@@ -1322,15 +1227,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "view_id",
-            "in": "path",
-            "description": "ID of the view that contains all the filter conditions",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "requestBody": {
@@ -1355,8 +1251,21 @@
               }
             }
           },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
           "400": {
             "description": "The specified view is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrorSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1370,19 +1279,6 @@
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "500": {
-            "description": "Internal Server Error.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrorSchema"
-                }
-              }
-            }
           }
         },
         "security": [
@@ -1455,14 +1351,14 @@
               }
             }
           },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
           "401": {
             "$ref": "#/components/responses/NotAuthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
           }
         },
         "security": [
@@ -1535,14 +1431,14 @@
               }
             }
           },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
           "401": {
             "$ref": "#/components/responses/NotAuthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
           }
         },
         "security": [
@@ -1615,14 +1511,14 @@
               }
             }
           },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
           "401": {
             "$ref": "#/components/responses/NotAuthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
           }
         },
         "security": [
@@ -1685,14 +1581,14 @@
               }
             }
           },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
           "401": {
             "$ref": "#/components/responses/NotAuthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
           }
         },
         "security": [
@@ -3064,70 +2960,19 @@
           }
         ]
       }
-    },
-    "/flow/2/{account_id}/case/{case_id}/report/": {
-      "get": {
-        "tags": [
-          "Case"
-        ],
-        "description": "This endpoint returns a list of reports from the given case system to which the current user has access to.",
-        "summary": "Get report list",
-        "parameters": [
-          {
-            "name": "account_id",
-            "in": "path",
-            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "case_id",
-            "in": "path",
-            "description": "Your Kissflow <<glossary:Case ID>>. This is a mandatory parameter.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Fetched report list successfully.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListReportsResponse"
-                }
-              }
-            }
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "401": {
-            "$ref": "#/components/responses/NotAuthorized"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        },
-        "security": [
-          {
-            "X-Api-Key": []
-          },
-          {
-            "X-Access-Key-Id": [],
-            "X-Access-Key-Secret": []
-          }
-        ]
-      }
+    }
+  },
+  "info": {
+    "title": "Case Management APIs ",
+    "version": "2.0.0",
+    "description": "Documentation for Case Management APIs",
+    "contact": {
+      "email": "engg@kissflow.com"
     }
   },
   "tags": [
     {
-      "name": "Boards",
+      "name": "Case",
       "description": "Create and manage Case in Kissflow using these API endpoints.",
       "externalDocs": {
         "description": "Find out more",
@@ -3135,55 +2980,780 @@
       }
     }
   ],
+  "openapi": "3.0.3",
   "components": {
-    "responses": {
-      "NotAuthorized": {
-        "description": "The client request has not been completed because it lacks valid authentication credentials for the requested resource.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/DefaultErrorSchema"
-            }
-          }
-        }
-      },
-      "NotFound": {
-        "description": "Resource Requested is not found",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/DefaultErrorSchema"
-            }
-          }
-        }
-      },
-      "Forbidden": {
-        "description": "The server understands the request but refuses to authorize it.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/DefaultErrorSchema"
-            }
-          }
-        }
-      }
-    },
     "schemas": {
-      "DefaultStatus": {
+      "Field": {
         "type": "object",
         "properties": {
-          "message": {
+          "IsSystemField": {
+            "type": "boolean"
+          },
+          "Name": {
             "type": "string"
           },
-          "status": {
+          "Type": {
+            "type": "string"
+          },
+          "Id": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateDictOfInstance": {
+        "type": "object",
+        "properties": {
+          "Summary": {
             "type": "string"
           }
         },
         "required": [
-          "status"
+          "Summary"
+        ]
+      },
+      "System": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "UpdateDictOfInstanceResponse": {
+        "type": "object",
+        "properties": {
+          "Summary": {
+            "type": "string"
+          },
+          "_modified_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "_modified_by": {
+            "$ref": "#/components/schemas/System"
+          }
+        },
+        "required": [
+          "Summary"
+        ]
+      },
+      "LookupResponseOfAInstance": {
+        "type": "object",
+        "properties": {
+          "PONumber": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "RequestedBy": {
+            "$ref": "#/components/schemas/System"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "TotalPrice": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateDictOfAInstance": {
+        "type": "object",
+        "properties": {
+          "PONumber": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "RequestedBy": {
+            "$ref": "#/components/schemas/System"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "TotalPrice": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name",
+          "_id"
+        ]
+      },
+      "BatchUpdate": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UpdateDictOfAInstance"
+            }
+          }
+        }
+      },
+      "GRIDDataResponse": {
+        "type": "object",
+        "properties": {
+          "Table_TableName": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BatchUpdate"
+            }
+          },
+          "Columns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Field"
+            }
+          },
+          "Filter": {
+            "type": "object"
+          }
+        }
+      },
+      "MoveItemInstanceDict": {
+        "type": "object",
+        "properties": {
+          "_status_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_status_id"
+        ]
+      },
+      "AssignItemInstanceDict": {
+        "type": "object",
+        "properties": {
+          "AssignedTo": {
+            "type": "object"
+          }
+        }
+      },
+      "ListValueofField": {
+        "type": "object",
+        "properties": {}
+      },
+      "BatchMove": {
+        "type": "object",
+        "properties": {
+          "_status_id": {
+            "type": "string"
+          },
+          "item": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "_status_id",
+          "item"
+        ]
+      },
+      "BatchAssign": {
+        "type": "object",
+        "properties": {
+          "AssignedTo": {
+            "type": "object"
+          },
+          "item": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "item"
+        ]
+      },
+      "BatchResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "_failed_items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "MultipleItem": {
+        "type": "object",
+        "properties": {
+          "item": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "item"
+        ]
+      },
+      "BatchUpdatePriority": {
+        "type": "object",
+        "properties": {
+          "item": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "_priority_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_priority_id",
+          "item"
+        ]
+      },
+      "CreateItem": {
+        "type": "object",
+        "properties": {
+          "DueDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Requester": {
+            "$ref": "#/components/schemas/System"
+          },
+          "AssignedTo": {
+            "$ref": "#/components/schemas/System"
+          },
+          "_status_id": {
+            "type": "string"
+          },
+          "_priority_id": {
+            "type": "string"
+          }
+        }
+      },
+      "StatusDefinition": {
+        "type": "object",
+        "properties": {
+          "_status_name": {
+            "type": "string"
+          },
+          "_category": {
+            "type": "string"
+          }
+        }
+      },
+      "TransitionResponse": {
+        "type": "object",
+        "properties": {
+          "_to": {
+            "$ref": "#/components/schemas/StatusDefinition"
+          },
+          "_from": {
+            "$ref": "#/components/schemas/StatusDefinition"
+          },
+          "_gross_time_projection": {
+            "type": "string"
+          },
+          "_created_by": {
+            "$ref": "#/components/schemas/System"
+          },
+          "GrossTime": {
+            "type": "number"
+          },
+          "_created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ActivityResponse": {
+        "type": "object",
+        "properties": {
+          "_event_field": {
+            "type": "string"
+          },
+          "_event_type": {
+            "type": "string"
+          },
+          "_status_id": {
+            "type": "string"
+          },
+          "_change_summary": {
+            "type": "object"
+          },
+          "_created_by": {
+            "$ref": "#/components/schemas/System"
+          },
+          "_status_name": {
+            "type": "string"
+          },
+          "_status_instance_id": {
+            "type": "string"
+          },
+          "_visibility_fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "_created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "GetItem": {
+        "type": "object",
+        "properties": {
+          "_created_by": {
+            "$ref": "#/components/schemas/System"
+          },
+          "Requester": {
+            "$ref": "#/components/schemas/System"
+          },
+          "_start_status_instance_id": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "_modified_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "AssignedTo": {
+            "$ref": "#/components/schemas/System"
+          },
+          "_item_id": {
+            "type": "string"
+          },
+          "_category": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "_modified_by": {
+            "$ref": "#/components/schemas/System"
+          },
+          "_created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "_counter": {
+            "type": "number"
+          },
+          "_status_id": {
+            "type": "string"
+          },
+          "_previous_status_instance_id": {
+            "type": "string"
+          },
+          "_priority_name": {
+            "type": "string"
+          },
+          "_status_name": {
+            "type": "string"
+          },
+          "_priority_id": {
+            "type": "string"
+          },
+          "_flow_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
         ]
       },
       "DefaultErrorSchema": {
+        "type": "object",
+        "properties": {
+          "args": {
+            "type": "object"
+          },
+          "en_message": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "error_code": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id",
+          "error_code"
+        ]
+      },
+      "PriorityUpdateDict": {
+        "type": "object",
+        "properties": {
+          "_priority_id": {
+            "type": "string"
+          }
+        }
+      },
+      "RequesterUpdateDict": {
+        "type": "object",
+        "properties": {
+          "Requester": {
+            "type": "object"
+          }
+        }
+      },
+      "DueDateUpdateDict": {
+        "type": "object",
+        "properties": {
+          "DueDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "NotesBody": {
+        "type": "object",
+        "properties": {
+          "nodes": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "type": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object"
+          }
+        }
+      },
+      "NotesRequest": {
+        "type": "object",
+        "properties": {
+          "Content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotesBody"
+            }
+          },
+          "AtMentions": {
+            "type": "object"
+          }
+        }
+      },
+      "NotesListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotesRequest"
+            }
+          }
+        }
+      },
+      "FilterColumns": {
+        "type": "object",
+        "properties": {
+          "ReadOnly": {
+            "type": "string"
+          },
+          "Model": {
+            "type": "string"
+          },
+          "Type": {
+            "type": "string"
+          },
+          "Id": {
+            "type": "string"
+          },
+          "Fixed": {
+            "type": "boolean"
+          },
+          "Required": {
+            "type": "boolean"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "IsSystemField": {
+            "type": "boolean"
+          },
+          "Widget": {
+            "type": "string"
+          },
+          "Width": {
+            "type": "number"
+          }
+        }
+      },
+      "FilterStructure": {
+        "type": "object",
+        "properties": {
+          "Operator": {
+            "type": "string"
+          },
+          "RHSField": {
+            "type": "string"
+          },
+          "LHSField": {
+            "type": "string"
+          },
+          "RHSType": {
+            "type": "string"
+          },
+          "RHSAttribute": {
+            "type": "string"
+          },
+          "RHSValue": {
+            "type": "string"
+          }
+        }
+      },
+      "ORCondition": {
+        "type": "object",
+        "properties": {
+          "OR": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FilterStructure"
+            }
+          }
+        }
+      },
+      "Filter": {
+        "type": "object",
+        "properties": {
+          "AND": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ORCondition"
+            }
+          }
+        }
+      },
+      "SortStructure": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "string"
+          },
+          "SortType": {
+            "type": "string"
+          }
+        }
+      },
+      "FilterConfigJson": {
+        "type": "object",
+        "properties": {
+          "FilterType": {
+            "type": "string"
+          },
+          "PageSize": {
+            "type": "number"
+          },
+          "Columns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FilterColumns"
+            }
+          },
+          "Filter": {
+            "$ref": "#/components/schemas/Filter"
+          },
+          "Sort": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SortStructure"
+            }
+          }
+        }
+      },
+      "CreateFilter": {
+        "type": "object",
+        "properties": {
+          "ConfigJson": {
+            "$ref": "#/components/schemas/FilterConfigJson"
+          },
+          "ViewType": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "AppId": {
+            "type": "string"
+          },
+          "ViewId": {
+            "type": "string"
+          }
+        }
+      },
+      "ListItemResponse": {
+        "type": "object",
+        "properties": {
+          "FilterType": {
+            "type": "string"
+          },
+          "Data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetItem"
+            }
+          },
+          "_id": {
+            "type": "string"
+          },
+          "PageSize": {
+            "type": "number"
+          },
+          "Columns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FilterColumns"
+            }
+          },
+          "Filter": {
+            "$ref": "#/components/schemas/Filter"
+          },
+          "Sort": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SortStructure"
+            }
+          }
+        }
+      },
+      "WatchersRequest": {
+        "type": "object",
+        "properties": {
+          "_watchers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/System"
+            }
+          }
+        }
+      },
+      "CountResponse": {
+        "type": "object",
+        "properties": {
+          "Count": {
+            "type": "number"
+          }
+        }
+      },
+      "UpdateDictOfInstanceIntegration": {
+        "type": "object",
+        "properties": {
+          "DueDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Product_Name": {
+            "type": "string"
+          },
+          "Purchased_Date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Requester": {
+            "type": "object"
+          },
+          "Summary": {
+            "type": "string"
+          },
+          "Product_Number": {
+            "type": "number"
+          },
+          "AssignedTo": {
+            "type": "object"
+          },
+          "Bill_Number": {
+            "type": "number"
+          },
+          "_status_id": {
+            "type": "string"
+          },
+          "Description": {
+            "type": "string"
+          },
+          "_priority_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Summary"
+        ]
+      },
+      "UpdateDictOfInstanceIntegrationResponse": {
+        "type": "object",
+        "properties": {
+          "DueDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Product_Name": {
+            "type": "string"
+          },
+          "Purchased_Date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Requester": {
+            "type": "object"
+          },
+          "Summary": {
+            "type": "string"
+          },
+          "Product_Number": {
+            "type": "number"
+          },
+          "AssignedTo": {
+            "type": "object"
+          },
+          "Bill_Number": {
+            "type": "number"
+          },
+          "_modified_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "_modified_by": {
+            "$ref": "#/components/schemas/System"
+          },
+          "_status_id": {
+            "type": "string"
+          },
+          "Description": {
+            "type": "string"
+          },
+          "_priority_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Summary"
+        ]
+      },
+      "DefaultErrorSchemas": {
         "type": "object",
         "properties": {
           "_id": {
@@ -3224,33 +3794,38 @@
         "name": "X-Access-Key-Secret",
         "in": "header"
       }
-    }
-  },
-  "servers": [
-    {
-      "url": "https://{domain}.kissflow.{region}",
-      "variables": {
-        "domain": {
-          "default": "demo",
-          "description": "Sub-domain to your account"
-        },
-        "region": {
-          "enum": [
-            "com",
-            "eu"
-          ],
-          "default": "com",
-          "description": "Region to your account"
+    },
+    "responses": {
+      "NotAuthorized": {
+        "description": "The client request has not been completed because it lacks valid authentication credentials for the requested resource.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DefaultErrorSchema"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "Resource Requested is not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DefaultErrorSchema"
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "The server understands the request but refuses to authorize it.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DefaultErrorSchema"
+            }
+          }
         }
       }
     }
-  ],
-  "info": {
-    "title": "Boards",
-    "version": "4.0.0",
-    "contact": {
-      "email": "admin@kissflow.com"
-    }
-  },
-  "openapi": "3.0.0"
+  }
 }
