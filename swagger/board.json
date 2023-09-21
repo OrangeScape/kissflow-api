@@ -3,7 +3,7 @@
     "/case/2/{account_id}/{case_id}/{item_id}": {
       "get": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you retrieve all the details of an item.",
         "summary": "Retrieve all item details",
@@ -69,7 +69,7 @@
       },
       "delete": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you delete an item from the case system.",
         "summary": "Delete an Item",
@@ -142,7 +142,7 @@
     "/case/2/{account_id}/{case_id}/{item_id}/{status_id}": {
       "post": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you update the custom form fields in a case system.",
         "summary": "Update custom form fields",
@@ -250,7 +250,7 @@
     "/case/2/{account_id}/{case_id}/{item_id}/{status_id}/move": {
       "post": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you change the status of an item in the case system.",
         "summary": "Update the status of an item",
@@ -358,7 +358,7 @@
     "/case/2/{account_id}/{case_id}/{item_id}/{status_id}/reassign": {
       "post": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you change the assignee of an item in the case system.",
         "summary": "Update the assignee for an item",
@@ -466,7 +466,7 @@
     "/case/2/{account_id}/{case_id}/{item_id}/{status_id}/DueDate": {
       "put": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you update the due date (date and time) for an item in the case system.",
         "summary": "Update the due date and time for an item",
@@ -574,7 +574,7 @@
     "/case/2/{account_id}/{case_id}/{item_id}/{status_id}/_priority_id": {
       "put": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you update the priority for an item in the case system.",
         "summary": "Update the priority for an item",
@@ -682,7 +682,7 @@
     "/case/2/{account_id}/{case_id}/{item_id}/{status_id}/Requester": {
       "put": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you update the requester for an item in the case system.",
         "summary": "Update the requester for an item",
@@ -790,7 +790,7 @@
     "/case/2/{account_id}/{case_id}/{item_id}/add/watchers": {
       "post": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you add watcher(s) to a case.",
         "summary": "Add watcher(s) to a case",
@@ -894,7 +894,7 @@
     "/case/2/{account_id}/{case_id}/{item_id}/watchers": {
       "post": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you retrieve the list of watchers for a case in your case system.",
         "summary": "Get list of watchers for a case",
@@ -972,7 +972,7 @@
     "/case/2/{account_id}/{case_id}/{item_id}/remove/watchers": {
       "post": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you remove watcher(s) from a case.",
         "summary": "Remove watcher(s) from a case",
@@ -1066,7 +1066,7 @@
     "/case/2/{account_id}/{case_id}/{item_id}/transition": {
       "get": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you retrieve the status transitions of an item in a case system.",
         "summary": "Retrieve status transitions of an item",
@@ -1205,7 +1205,7 @@
     "/case/2/{account_id}/{case_id}/count": {
       "post": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets your retrieve the number of items in a view based on a filter.",
         "summary": "Retrieve the number of items in a view",
@@ -1295,7 +1295,7 @@
     "/case/2/{account_id}/{case_id}/batch/reassign": {
       "post": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you bulk-update assignee for items.",
         "summary": "Bulk-update assignee for items",
@@ -1375,7 +1375,7 @@
     "/case/2/{account_id}/{case_id}/batch/move": {
       "post": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you bulk-update status for items.",
         "summary": "Bulk-update status for items",
@@ -1455,7 +1455,7 @@
     "/case/2/{account_id}/{case_id}/batch/_priority_id": {
       "post": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you bulk-update priority for items.",
         "summary": "Bulk-update priority for items",
@@ -1535,7 +1535,7 @@
     "/case/2/{account_id}/{case_id}/batch/delete": {
       "post": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you bulk-delete items from the case system.",
         "summary": "Bulk-delete items",
@@ -1605,7 +1605,7 @@
     "/case/2/{account_id}/{case_id}/{item_id}/{field_id}/attachment": {
       "post": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you add an attachment to an attachment field in the case form. The following file formats are supported - pdf, .doc, .ppt, .xls, .jpg, .jpeg, .jpe, .png, .gif, or .mp4.",
         "summary": "Upload an attachment to an attachment field",
@@ -1698,7 +1698,7 @@
     "/case/2/{account_id}/{case_id}/{item_id}/{table_id}/{row_id}/{field_id}/attachment": {
       "post": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you upload an attachment to an attachment field in a table in the case form. The following file formats are supported - pdf, .doc, .ppt, .xls, .jpg, .jpeg, .jpe, .png, .gif, or .mp4.",
         "summary": "Upload an attachment to an attachment field in a table table field",
@@ -1809,7 +1809,7 @@
     "/case/2/{account_id}/{case_id}/{item_id}/{field_id}/image": {
       "post": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you upload an image file to an image field in the case form. The following file formats are supported - .jpg, .jpeg, .jpe, .png, or .gif.",
         "summary": "Upload an image file to an image field",
@@ -1900,7 +1900,7 @@
       },
       "get": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you download an image file from an image field in the case form.",
         "summary": "Download an image file from an image field",
@@ -1978,7 +1978,7 @@
     "/case/2/{account_id}/{case_id}/{item_id}/{table_id}/{row_id}/{field_id}/image": {
       "post": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you upload an image file to an image field in a table in the case form. The following image file formats are supported - .jpg, .jpeg, .jpe, .png, or .gif.",
         "summary": "Upload an image to an image field in a table",
@@ -2087,7 +2087,7 @@
       },
       "get": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you download an image file from an image field in the case form.",
         "summary": "Download an image from an image file in a table",
@@ -2183,7 +2183,7 @@
     "/case/2/{account_id}/{case_id}/{item_id}/{field_id}/attachment/{attachment_id}": {
       "get": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you download an attachment from an attachment field in the case form.",
         "summary": "Download an attachment from an attachment field",
@@ -2270,7 +2270,7 @@
     "/case/2/{account_id}/{case_id}/{item_id}/{table_id}/{row_id}/{field_id}/attachment/{attachment_id}": {
       "get": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you download an attachment from an attachment field in the case form.",
         "summary": "Download an attachment from an attachment field in a table",
@@ -2375,7 +2375,7 @@
     "/case/2/{account_id}/{case_id}/fields": {
       "get": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you retrieve all the fields in a case system.",
         "summary": "Retrieve all fields",
@@ -2434,7 +2434,7 @@
     "/case/2/{account_id}/{case_id}/lookup/fields": {
       "get": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint retrieves all fields from another flow using a lookup field.",
         "summary": "Retrieve all fields using a lookup field",
@@ -2493,7 +2493,7 @@
     "/case/2/{account_id}/{case_id}/table/{table_id}/fields": {
       "get": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you retrieve all the fields from a table in another flow while using a lookup field.",
         "summary": "Retrieve all fields from a table using a lookup field",
@@ -2561,7 +2561,7 @@
     "/case/2/{account_id}/{case_id}/{item_id}/{field_id}/lookup": {
       "get": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint retrieves a list of items in another flow and populate it in a lookup field added in the case form.",
         "summary": "Retrieve a list of items and populate them in a lookup field",
@@ -2663,7 +2663,7 @@
     "/case/2/{account_id}/{case_id}/{item_id}/{table_id}/{table_instance_id}/{field_id}/lookup": {
       "get": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint retrieves a list of items from another flow and populates it in a lookup field added in a table in the case form.",
         "summary": "Retrieve a list of items and populate them in a lookup field in a table",
@@ -2783,7 +2783,7 @@
     "/case/2/{account_id}/{case_id}/{item_id}/{field_id}/rlookup": {
       "get": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint lets you retrieve a list of items external source and populates it in a remote lookup field added in the case form.",
         "summary": "Retrieve a list of items and populate them in a remote lookup field",
@@ -2869,7 +2869,7 @@
     "/case/2/{account_id}/{case_id}/{item_id}/{table_id}/{table_instance_id}/{field_id}/rlookup": {
       "get": {
         "tags": [
-          "Case"
+          "Board"
         ],
         "description": "This endpoint retrieves a list of items from an external source and populates it in a remote lookup field added in a table in the case form.",
         "summary": "Retrieve a list of items and populate them in a remote lookup field in a table",
@@ -2963,7 +2963,7 @@
     }
   },
   "info": {
-    "title": "Case Management APIs ",
+    "title": "Board",
     "version": "2.0.0",
     "description": "Documentation for Case Management APIs",
     "contact": {
@@ -2972,7 +2972,7 @@
   },
   "tags": [
     {
-      "name": "Case",
+      "name": "Board",
       "description": "Create and manage Case in Kissflow using these API endpoints.",
       "externalDocs": {
         "description": "Find out more",
